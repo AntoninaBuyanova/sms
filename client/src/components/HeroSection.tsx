@@ -8,13 +8,12 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mx-auto">
           {/* User count banner */}
-          <div className="flex items-center justify-center gap-2 mb-6 md:mb-8">
-            <div className="flex -space-x-2">
-              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
-              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
-              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
+          <div className="inline-flex items-center gap-2 mb-6 md:mb-8 border border-[#E8E8E5] rounded-full px-4 py-2">
+            <img src="/users.png" alt="User avatars" className="h-6 md:h-8 w-auto" />
+            <div className="text-sm md:text-base text-[#232323] font-aeonik">
+              <span className="font-normal">Loved by </span>
+              <span className="font-medium">500k+ users</span>
             </div>
-            <span className="text-sm md:text-base text-gray-600">Loved by 500k+ users</span>
           </div>
 
           {/* Main heading */}
