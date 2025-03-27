@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Twitter, Facebook, Linkedin, Youtube } from 'lucide-react';
+import { LinkedInIcon, TwitterIcon, InstagramIcon, YoutubeIcon, FacebookIcon } from './icons/Logo';
 
 const Footer: React.FC = () => {
   return (
@@ -53,11 +53,11 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-medium mb-4 font-aeonik">Follow Us</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-[#232323] hover:opacity-70"><Linkedin className="w-6 h-6" /></a>
-              <a href="#" className="text-[#232323] hover:opacity-70"><Twitter className="w-6 h-6" /></a>
-              <a href="#" className="text-[#232323] hover:opacity-70"><Instagram className="w-6 h-6" /></a>
-              <a href="#" className="text-[#232323] hover:opacity-70"><Youtube className="w-6 h-6" /></a>
-              <a href="#" className="text-[#232323] hover:opacity-70"><Facebook className="w-6 h-6" /></a>
+              <a href="https://www.linkedin.com/company/mystylus-ai/" className="text-[#232323] hover:opacity-70"><LinkedInIcon className="w-6 h-6" /></a>
+              <a href="https://x.com/stylusai/" className="text-[#232323] hover:opacity-70"><TwitterIcon className="w-6 h-6" /></a>
+              <a href="https://www.instagram.com/mystylus.ai/" className="text-[#232323] hover:opacity-70"><InstagramIcon className="w-6 h-6" /></a>
+              <a href="https://www.youtube.com/@mystylus" className="text-[#232323] hover:opacity-70"><YoutubeIcon className="w-6 h-6" /></a>
+              <a href="https://www.facebook.com/mystylusai/" className="text-[#232323] hover:opacity-70"><FacebookIcon className="w-6 h-6" /></a>
             </div>
           </div>
         </div>
