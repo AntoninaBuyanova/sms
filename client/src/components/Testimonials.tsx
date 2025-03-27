@@ -1,5 +1,6 @@
 import React from 'react';
-import { Star, Lightbulb, FileText, Sparkles } from 'lucide-react';
+import { Star } from 'lucide-react';
+import { SmartFeedbackIcon, OneClickFixesIcon, CleanDraftIcon } from './icons/Logo';
 
 const TestimonialCard: React.FC<{
   quote: string;
@@ -29,11 +30,11 @@ const TestimonialCard: React.FC<{
 };
 
 const FeatureItem: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
-  <div className="flex flex-row md:flex-col items-start md:items-center text-left md:text-center gap-4">
-    <div className="md:mb-3 shrink-0">
+  <div className="flex flex-row md:flex-col items-start text-left gap-4">
+    <div className="shrink-0">
       {icon}
     </div>
-    <div className="md:flex md:flex-col md:items-center">
+    <div>
       <h3 className="text-base font-medium mb-1 text-[#232323]">{title}</h3>
       <p className="text-sm text-[#666666] font-aeonik">{description}</p>
     </div>
@@ -55,19 +56,19 @@ const Testimonials: React.FC = () => {
             {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-12 lg:grid-cols-3 lg:w-[55%] w-full justify-items-start">
               <FeatureItem
-                icon={<Lightbulb className="w-8 h-8" />}
+                icon={<SmartFeedbackIcon className="w-8 h-8" />}
                 title="Smart section feedback"
                 description="Get detailed insights for every part of your paper"
               />
               <FeatureItem
-                icon={<Sparkles className="w-8 h-8" />}
-                title="One-click fixes"
-                description="Apply clear fixes instantly, right in the editor"
+                icon={<OneClickFixesIcon className="w-8 h-8" />}
+                title="Citation finder"
+                description="Enhance your paper with in-line citations"
               />
               <FeatureItem
-                icon={<FileText className="w-8 h-8" />}
-                title="Clean, final draft"
-                description="Polished, corrected, and ready to impress"
+                icon={<CleanDraftIcon className="w-8 h-8" />}
+                title="One-click fixes"
+                description="Apply clear fixes instantly, right in the editor"
               />
             </div>
           </div>
