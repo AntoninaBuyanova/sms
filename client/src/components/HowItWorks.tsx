@@ -7,14 +7,14 @@ const StepCard: React.FC<{
   isHighlighted?: boolean;
 }> = ({ number, title, description, isHighlighted }) => {
   return (
-    <div className={`rounded-2xl p-8 ${isHighlighted ? 'bg-[#E8FF81]' : 'bg-white border border-gray-100'}`}>
-      <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white text-black font-medium mb-6">
+    <div className={`rounded-[1.25rem] p-8 ${isHighlighted ? 'bg-[#E9FF70]' : 'bg-white border border-[#E8E8E5]'}`}>
+      <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white text-black font-medium mb-6 border border-[#E8E8E5]">
         {number}
       </div>
-      <h3 className="text-2xl font-medium mb-3">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <h3 className="text-2xl font-aeonik font-medium mb-3 text-[#3C3C3C]">{title}</h3>
+      <p className="text-[#3C3C3C]">{description}</p>
       {isHighlighted && (
-        <button className="mt-6 px-6 py-3 bg-black text-white rounded-full font-medium">
+        <button className="mt-6 px-6 py-3 bg-[#232323] text-[#FFFFFF] text-base rounded-full font-aeonik font-medium">
           Get started
         </button>
       )}
@@ -24,12 +24,12 @@ const StepCard: React.FC<{
 
 const HowItWorks: React.FC = () => {
   return (
-    <section className="py-20 bg-[#FFFFFF]">
+    <section className="pt-[7.5rem] pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-start mb-16">
-          <h2 className="text-5xl font-normal">How it works</h2>
-          <p className="text-gray-600 max-w-xs text-right">
-            3 easy steps to strengthen and finalize your academic paper
+        <div className="flex justify-between items-start mb-[2.5rem]">
+          <h2 className="text-[3.25rem] font-aeonik font-medium leading-[3.75rem] text-[#232323]">How it works</h2>
+          <p className="text-[#3C3C3C] max-w-[17rem] text-right font-aeonik">
+            <span className="font-medium">3 easy steps</span> to strengthen and finalize your academic paper
           </p>
         </div>
 

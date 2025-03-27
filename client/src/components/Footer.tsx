@@ -7,18 +7,11 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and tagline */}
         <div className="mb-16">
-          <div className="flex items-center gap-4 mb-2">
-            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center">
-              <div className="text-white text-2xl">S</div>
-            </div>
-            <div>
-              <h2 className="text-2xl">Reimagine the Word™</h2>
-            </div>
-          </div>
-          <div className="text-gray-600">
-            <p>Intelligent Platform for</p>
-            <p><em>Writing and Research.</em></p>
-          </div>
+          <img 
+            src="Banner (2).png" 
+            alt="Reimagine the Word - Intelligent Platform for Writing and Research" 
+            className="h-auto max-w-[550px] w-full"
+          />
         </div>
 
         {/* Navigation Grid */}
@@ -27,10 +20,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-medium mb-4">Company</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Terms of service</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Cookie & Privacy policy</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">About us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Affiliate Program</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Terms of service</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Cookie & Privacy policy</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">About us</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Affiliate Program</a></li>
             </ul>
           </div>
 
@@ -38,10 +31,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-medium mb-4">AI Generators</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Paragraph Generator</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Research Paper Generator</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Story Generator</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Thesis Generator: Try one</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Paragraph Generator</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Research Paper Generator</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Story Generator</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Thesis Generator: Try one</a></li>
             </ul>
           </div>
 
@@ -49,10 +42,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-medium mb-4">Writing tools</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">AI Writing Assistant</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Essay Title Generator</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Paraphraser Tool</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">Literature Review Generator</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">AI Writing Assistant</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Essay Title Generator</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Paraphraser Tool</a></li>
+              <li><a href="#" className="text-[#232323] hover:opacity-70">Literature Review Generator</a></li>
             </ul>
           </div>
 
@@ -60,23 +53,23 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-medium mb-4">Follow Us</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-600 hover:text-gray-900"><Linkedin className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-600 hover:text-gray-900"><Twitter className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-600 hover:text-gray-900"><Instagram className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-600 hover:text-gray-900"><Youtube className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-600 hover:text-gray-900"><Facebook className="w-6 h-6" /></a>
+              <a href="#" className="text-[#232323] hover:opacity-70"><Linkedin className="w-6 h-6" /></a>
+              <a href="#" className="text-[#232323] hover:opacity-70"><Twitter className="w-6 h-6" /></a>
+              <a href="#" className="text-[#232323] hover:opacity-70"><Instagram className="w-6 h-6" /></a>
+              <a href="#" className="text-[#232323] hover:opacity-70"><Youtube className="w-6 h-6" /></a>
+              <a href="#" className="text-[#232323] hover:opacity-70"><Facebook className="w-6 h-6" /></a>
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="flex flex-col md:flex-row justify-between text-sm text-gray-600">
+        <div className="flex flex-col md:flex-row justify-between text-sm text-[#232323]">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <span>© 2024 myStylus All Rights Reserved</span>
             <span>•</span>
-            <a href="mailto:info@myStylus.ai" className="hover:text-gray-900">info@myStylus.ai</a>
+            <a href="mailto:info@myStylus.ai" className="hover:opacity-70">info@myStylus.ai</a>
             <span>•</span>
-            <a href="#" className="hover:text-gray-900">Privacy policy</a>
+            <a href="#" className="hover:opacity-70">Privacy policy</a>
           </div>
           <div>
             <p>MyStylus, Inc., 3524 Silverside Road, Suite 35B, Wilmington 19810, Delaware, USA</p>
