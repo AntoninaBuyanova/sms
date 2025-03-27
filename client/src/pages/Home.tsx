@@ -5,7 +5,7 @@ import LogoCloud from '@/components/LogoCloud';
 import Features from '@/components/Features';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
-import FAQ from '@/components/FAQ';
+import HowItWorks from '@/components/HowItWorks';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
       <Features />
       <Testimonials />
       <Pricing />
-      <FAQ />
+      <HowItWorks />
       <CTA />
       <Footer />
     </div>

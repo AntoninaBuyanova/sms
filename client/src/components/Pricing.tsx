@@ -78,74 +78,52 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
 const Pricing: React.FC = () => {
   return (
-    <section id="pricing" className="py-20 md:py-32">
+    <section className="py-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Simple, transparent pricing</h2>
-          <p className="text-xl text-slate-600">Choose the plan that fits your writing needs, with no hidden fees.</p>
-        </div>
-        
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <PricingCard
-            title="Free"
-            description="Perfect for occasional writers"
-            price="$0"
-            period="/month"
-            features={[
-              { text: "Basic style suggestions", included: true },
-              { text: "Up to 5 documents", included: true },
-              { text: "5 basic templates", included: true },
-              { text: "Limited analytics", included: false },
-              { text: "No style tuning", included: false }
-            ]}
-            buttonText="Start with Free"
-            buttonStyle="outline"
-          />
-          
-          <PricingCard
-            title="Pro"
-            description="For professional writers and small teams"
-            price="$12"
-            period="/month"
-            features={[
-              { text: <span><span className="font-medium">Advanced</span> style suggestions</span>, included: true },
-              { text: <span><span className="font-medium">Unlimited</span> documents</span>, included: true },
-              { text: "50+ professional templates", included: true },
-              { text: "Full analytics dashboard", included: true },
-              { text: "Style tuning for 3 audiences", included: true }
-            ]}
-            buttonText="Get Pro"
-            buttonStyle="primary"
-            featured={true}
-            badge="POPULAR"
-          />
-          
-          <PricingCard
-            title="Team"
-            description="For organizations and content teams"
-            price="$29"
-            period="/month per user"
-            features={[
-              { text: "Everything in Pro", included: true },
-              { text: "Team collaboration tools", included: true },
-              { text: "Brand voice settings", included: true },
-              { text: "Style tuning for unlimited audiences", included: true },
-              { text: "Priority support", included: true }
-            ]}
-            buttonText="Contact Sales"
-            buttonStyle="outline"
-          />
-        </div>
-        
-        <div className="mt-16 bg-slate-100 rounded-xl p-8 max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div className="mb-6 md:mb-0 md:mr-8">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Need a custom plan?</h3>
-              <p className="text-slate-600">We offer tailored solutions for larger teams and enterprises with specific requirements.</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left side - Before/After comparison */}
+          <div className="space-y-6">
+            {/* Before */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <h3 className="text-gray-500 mb-4">Before</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Social media has a strong impact on teenagers. It affects their mental health, self-esteem, and behavior. Many teens spend hours online every day, which can lead to anxiety and poor sleep. Overall, social media shapes how young people see themselves and the world around them.
+              </p>
             </div>
-            <a href="#" className="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors text-center whitespace-nowrap">
-              Contact our sales team
-            </a>
+
+            {/* After */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <h3 className="text-gray-500 mb-4">After</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Social media has a strong impact on teenagers. It affects their mental health, self-esteem, and behavior. According to a recent study, excessive daily use is linked to increased anxiety and disrupted sleep patterns <span className="text-blue-500">(Smith & Johnson, 2021)</span>. Overall, social media shapes how young people see themselves and the world around them.
+              </p>
+            </div>
+          </div>
+
+          {/* Right side - Feature description */}
+          <div>
+            <h2 className="text-5xl font-normal mb-8">
+              Enhance your paper<br />with in-line citations
+            </h2>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-2">
+                <Check className="w-6 h-6" />
+                <span className="text-xl">Spot uncited claims instantly</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-6 h-6" />
+                <span className="text-xl">Insert reliable in-line sources in one click</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-6 h-6" />
+                <span className="text-xl">Make your arguments more credible</span>
+              </div>
+            </div>
+
+            <button className="px-8 py-4 bg-black text-white rounded-full text-lg font-medium">
+              Add citations
+            </button>
           </div>
         </div>
       </div>

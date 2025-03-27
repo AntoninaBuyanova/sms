@@ -1,73 +1,84 @@
 import React from 'react';
-import Logo from './Logo';
-import { Instagram, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Linkedin, Youtube } from 'lucide-react';
+import Logo from './icons/Logo';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 text-slate-400 pt-16 pb-12">
+    <footer className="py-20 bg-[#F8F8F3]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
-            <Logo textColor="text-white" className="mb-6" />
-            <p className="mb-6">myStylus helps you write with style and confidence, providing real-time AI-powered suggestions to enhance your writing.</p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <Instagram className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <Twitter className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <Linkedin className="h-6 w-6" />
-              </a>
+        {/* Logo and tagline */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-2">
+            <Logo className="w-32 h-auto" />
+            <div>
+              <h2 className="text-2xl">Reimagine the Word™</h2>
             </div>
           </div>
-          
-          <div>
-            <h3 className="text-white font-semibold mb-4">Product</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">What's New</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Roadmap</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Guides</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">API Documentation</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Partners</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-            </ul>
+          <div className="text-gray-600">
+            <p>Intelligent Platform for</p>
+            <p><em>Writing and Research.</em></p>
           </div>
         </div>
-        
-        <div className="pt-8 mt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between">
-          <div className="mb-4 md:mb-0">
-            <p>&copy; {new Date().getFullYear()} myStylus. All rights reserved.</p>
+
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Company */}
+          <div>
+            <h3 className="font-medium mb-4">Company</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Terms of service</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Cookie & Privacy policy</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">About us</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Affiliate Program</a></li>
+            </ul>
           </div>
-          <div className="flex flex-col sm:flex-row sm:space-x-6 space-y-2 sm:space-y-0">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Security</a>
+
+          {/* AI Generators */}
+          <div>
+            <h3 className="font-medium mb-4">AI Generators</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Paragraph Generator</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Research Paper Generator</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Story Generator</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Thesis Generator: Try one</a></li>
+            </ul>
+          </div>
+
+          {/* Writing tools */}
+          <div>
+            <h3 className="font-medium mb-4">Writing tools</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">AI Writing Assistant</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Essay Title Generator</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Paraphraser Tool</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">Literature Review Generator</a></li>
+            </ul>
+          </div>
+
+          {/* Follow Us */}
+          <div>
+            <h3 className="font-medium mb-4">Follow Us</h3>
+            <div className="flex gap-4">
+              <a href="#" className="text-gray-600 hover:text-gray-900"><Linkedin className="w-6 h-6" /></a>
+              <a href="#" className="text-gray-600 hover:text-gray-900"><Twitter className="w-6 h-6" /></a>
+              <a href="#" className="text-gray-600 hover:text-gray-900"><Instagram className="w-6 h-6" /></a>
+              <a href="#" className="text-gray-600 hover:text-gray-900"><Youtube className="w-6 h-6" /></a>
+              <a href="#" className="text-gray-600 hover:text-gray-900"><Facebook className="w-6 h-6" /></a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="flex flex-col md:flex-row justify-between text-sm text-gray-600">
+          <div className="flex items-center gap-2 mb-4 md:mb-0">
+            <span>© 2024 myStylus All Rights Reserved</span>
+            <span>•</span>
+            <a href="mailto:info@myStylus.ai" className="hover:text-gray-900">info@myStylus.ai</a>
+            <span>•</span>
+            <a href="#" className="hover:text-gray-900">Privacy policy</a>
+          </div>
+          <div>
+            <p>MyStylus, Inc., 3524 Silverside Road, Suite 35B, Wilmington 19810, Delaware, USA</p>
           </div>
         </div>
       </div>

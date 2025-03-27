@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Lightbulb, ClipboardList, PieChart } from 'lucide-react';
+import { Check, Lightbulb, ClipboardList, PieChart, AlertCircle } from 'lucide-react';
 
 const FeatureCard: React.FC<{
   icon: React.ReactNode;
@@ -30,124 +30,60 @@ const FeatureCard: React.FC<{
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="py-20 md:py-32">
+    <section className="py-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Write better, faster, smarter</h2>
-          <p className="text-xl text-slate-600">myStylus enhances your writing with powerful AI that understands context, style, and audience.</p>
-        </div>
-        
-        <div className="grid gap-8 lg:grid-cols-3">
-          <FeatureCard
-            icon={<Lightbulb className="w-6 h-6 text-white" />}
-            title="Smart Suggestions"
-            description="Get real-time recommendations to improve readability, tone, and impact based on your specific writing goal."
-            benefits={[
-              "Style adaptation for different audiences",
-              "Sentence structure optimization",
-              "Word choice enhancements"
-            ]}
-          />
-          
-          <FeatureCard
-            icon={<ClipboardList className="w-6 h-6 text-white" />}
-            title="Content Templates"
-            description="Access professionally designed templates for emails, blog posts, social media, and more to jumpstart your writing."
-            benefits={[
-              "50+ customizable templates",
-              "Industry-specific frameworks",
-              "One-click personalization"
-            ]}
-          />
-          
-          <FeatureCard
-            icon={<PieChart className="w-6 h-6 text-white" />}
-            title="Analytics & Insights"
-            description="Understand your writing patterns with detailed analysis of readability, engagement potential, and more."
-            benefits={[
-              "Readability scoring",
-              "Engagement prediction",
-              "Writing style evolution"
-            ]}
-          />
-        </div>
-        
-        <div className="mt-16 lg:mt-24">
-          <div className="bg-slate-100 rounded-2xl overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 mb-5">
-                  Featured Capability
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-5">Style Tuning for Your Audience</h3>
-                <p className="text-lg text-slate-600 mb-6">Automatically adjust your writing style based on your target audience. myStylus detects formality, complexity, and engagement levels to ensure your content resonates perfectly.</p>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    "Formality adjustment for business vs. casual communication",
-                    "Technical complexity tuning based on audience expertise",
-                    "Emotional tone calibration for maximum impact"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-purple-600" />
-                      </div>
-                      <p className="ml-3 text-slate-700">{item}</p>
-                    </li>
-                  ))}
-                </ul>
-                <a href="#" className="inline-flex items-center font-medium text-purple-600 hover:text-purple-800">
-                  Learn more about style tuning
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left side content */}
+          <div>
+            <h2 className="text-5xl font-normal mb-6">
+              See your paper the<br />way a professor would
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Get detailed academic feedback and improve it with expert-level insights
+            </p>
+            <button className="px-8 py-4 bg-black text-white rounded-full text-lg">
+              Check my paper
+            </button>
+          </div>
+
+          {/* Right side content */}
+          <div className="relative">
+            {/* Plagiarism warning card */}
+            <div className="absolute -top-10 right-0 bg-white rounded-2xl shadow-lg p-6 max-w-sm z-10">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertCircle className="w-5 h-5 text-yellow-500" />
+                <span className="font-medium">High risk of plagiarism</span>
               </div>
-              <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-8 lg:p-12 flex items-center justify-center">
-                <div className="bg-white rounded-xl shadow-lg p-6 max-w-md">
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="font-medium text-slate-900">Style Settings</h4>
-                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Active</span>
-                    </div>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Audience Type</label>
-                        <select className="w-full rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
-                          <option>Technical experts</option>
-                          <option>General audience</option>
-                          <option>Business professionals</option>
-                          <option>Customers</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Formality Level</label>
-                        <div className="flex items-center">
-                          <span className="text-xs text-slate-600 mr-2">Casual</span>
-                          <input type="range" className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" min="1" max="5" defaultValue="3" />
-                          <span className="text-xs text-slate-600 ml-2">Formal</span>
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Tone</label>
-                        <div className="grid grid-cols-3 gap-2">
-                          <button className="px-3 py-1 border border-purple-600 bg-purple-50 text-purple-700 rounded-lg text-sm">Professional</button>
-                          <button className="px-3 py-1 border border-slate-300 text-slate-700 rounded-lg text-sm">Friendly</button>
-                          <button className="px-3 py-1 border border-slate-300 text-slate-700 rounded-lg text-sm">Enthusiastic</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-slate-50 rounded-lg">
-                    <div className="flex items-start space-x-3">
-                      <svg className="w-5 h-5 text-purple-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                      <p className="text-sm text-slate-700">Your writing will now be optimized for technical experts with a professional tone.</p>
-                    </div>
-                  </div>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-medium mb-2">Potential Sources</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                      <span className="text-sm">Academic Journal of Research Vol. 12</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                      <span className="text-sm">Smith, J. (2023). Advanced Research</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                      <span className="text-sm">Johnson, A. (2023). Innovative Studies in T...</span>
+                    </li>
+                  </ul>
                 </div>
+                <button className="w-full py-2 px-4 bg-gray-100 rounded-lg text-sm font-medium">
+                  Increase originality
+                </button>
               </div>
             </div>
+
+            {/* Main image */}
+            <img 
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Student working on laptop"
+              className="rounded-3xl w-full"
+            />
           </div>
         </div>
       </div>

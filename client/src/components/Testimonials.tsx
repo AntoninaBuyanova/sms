@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Lightbulb, FileText, Sparkles } from 'lucide-react';
 
 const TestimonialCard: React.FC<{
   quote: string;
@@ -28,51 +28,138 @@ const TestimonialCard: React.FC<{
   );
 };
 
+const FeatureItem: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
+  <div className="flex flex-col items-center text-center">
+    <div className="mb-4">
+      {icon}
+    </div>
+    <h3 className="text-lg font-medium mb-2">{title}</h3>
+    <p className="text-gray-600 text-sm">{description}</p>
+  </div>
+);
+
 const Testimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="py-20 bg-slate-900 text-white">
+    <section className="py-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Loved by writers everywhere</h2>
-          <p className="text-xl text-slate-300">See what our users are saying about how myStylus transformed their writing process.</p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          <TestimonialCard
-            quote="myStylus transformed my content marketing workflow. The real-time style suggestions have improved our team's writing quality and consistency across all channels."
-            name="David Chen"
-            title="Content Director at TechFirm"
-            avatarUrl="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+        {/* Heading */}
+        <h2 className="text-5xl font-normal mb-16">
+          Your toolkit for<br />
+          a perfect paper
+        </h2>
+
+        {/* Features */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <FeatureItem
+            icon={<Lightbulb className="w-8 h-8" />}
+            title="Smart section feedback"
+            description="Get detailed insights for every part of your paper"
           />
-          
-          <TestimonialCard
-            quote="As a freelance writer, I've tried many writing tools, but myStylus stands out for its ability to adapt to different client tones and styles. It's like having an expert editor by my side."
-            name="Sarah Johnson"
-            title="Freelance Content Writer"
-            avatarUrl="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+          <FeatureItem
+            icon={<FileText className="w-8 h-8" />}
+            title="Citation finder"
+            description="Enhance your paper with in-line citations"
           />
-          
-          <TestimonialCard
-            quote="Our student engagement metrics improved by 32% after we started using myStylus to refine our educational content. The readability adjustments make complex topics more accessible."
-            name="Elena Rodriguez"
-            title="Education Director, LearnQuest"
-            avatarUrl="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+          <FeatureItem
+            icon={<Sparkles className="w-8 h-8" />}
+            title="One-click fixes"
+            description="Apply clear fixes instantly, right in the editor"
           />
         </div>
-        
-        <div className="mt-16 bg-slate-800 rounded-xl p-8 md:p-12">
-          <div className="max-w-4xl mx-auto">
-            <blockquote className="mb-8">
-              <svg className="w-10 h-10 text-purple-500 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <p className="text-2xl md:text-3xl font-light text-white leading-relaxed">"myStylus has been a game-changer for our marketing team. We've seen a 40% increase in email open rates and a 25% boost in content engagement since implementing their style recommendations across our communications."</p>
-            </blockquote>
-            <div className="flex items-center">
-              <img className="w-14 h-14 rounded-full mr-5" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="User avatar" />
-              <div>
-                <p className="font-semibold text-lg text-white">Michael Thompson</p>
-                <p className="text-slate-400">Chief Marketing Officer, GlobalBrand Inc.</p>
+
+        {/* Editor Demo */}
+        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+          {/* Window Controls */}
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+          </div>
+
+          {/* Editor Content */}
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-3">
+                <button className="text-gray-600">← Back</button>
+                <span className="text-gray-800">The Impact of Plastic Pollution on Marine Ecosystems.docx</span>
+              </div>
+              <div className="flex space-x-2">
+                <button className="px-4 py-1 rounded-full bg-gray-100">Editor</button>
+                <button className="px-4 py-1 rounded-full">Overview</button>
+              </div>
+            </div>
+
+            {/* Document Content */}
+            <div className="grid grid-cols-3 gap-8">
+              <div className="col-span-2">
+                <div className="bg-white rounded-lg p-6 border border-gray-200">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-gray-700">Section 1</h3>
+                    <span className="text-yellow-600 text-sm flex items-center">
+                      <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                      Needs attention
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    In today's rapidly evolving business environment, small and medium-sized enterprises (SMEs) are under increasing pressure to adapt to new technologies...
+                  </p>
+                </div>
+              </div>
+
+              {/* Analysis Panel */}
+              <div className="space-y-6">
+                <h3 className="font-medium text-gray-900">Section 1 Analysis</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-gray-600">Critical thinking</span>
+                      <span className="text-sm font-medium">9%</span>
+                    </div>
+                    <div className="h-1 bg-gray-200 rounded-full">
+                      <div className="h-1 bg-pink-500 rounded-full" style={{ width: '9%' }}></div>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">Limited critical analysis</p>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-gray-600">Coherence</span>
+                      <span className="text-sm font-medium">100%</span>
+                    </div>
+                    <div className="h-1 bg-gray-200 rounded-full">
+                      <div className="h-1 bg-blue-500 rounded-full" style={{ width: '100%' }}></div>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">Excellent flow and structure</p>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-gray-600">Relevance</span>
+                      <span className="text-sm font-medium">55%</span>
+                    </div>
+                    <div className="h-1 bg-gray-200 rounded-full">
+                      <div className="h-1 bg-yellow-500 rounded-full" style={{ width: '55%' }}></div>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">Often off-topic</p>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-gray-600">Argument logic</span>
+                      <span className="text-sm font-medium">9%</span>
+                    </div>
+                    <div className="h-1 bg-gray-200 rounded-full">
+                      <div className="h-1 bg-pink-500 rounded-full" style={{ width: '9%' }}></div>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full py-3 bg-black text-white rounded-full text-sm font-medium">
+                  Improve section
+                </button>
               </div>
             </div>
           </div>
