@@ -95,7 +95,7 @@ const Pricing: React.FC = () => {
             <div className="bg-white rounded-[20px] p-6 lg:p-8 shadow-sm border border-gray-100 relative lg:absolute lg:top-[160px] lg:left-[40px] lg:right-[-40px] z-20">
               <h3 className="text-[#3C3C3C] text-base lg:text-xl font-normal mb-3 lg:mb-4">After</h3>
               <p className="text-[#3C3C3C] leading-relaxed text-base font-normal">
-                Social media has a strong impact on teenagers. It affects their mental health, self-esteem, and behavior. According to a recent study, excessive daily use is linked to increased anxiety and disrupted sleep patterns <span className="text-[#60A5FA]">(Smith & Johnson, 2021)</span>. Overall, social media shapes how young people see themselves and the world around them.
+                Social media has a strong impact on teenagers. It affects their mental health, self-esteem, and behavior. <span className="bg-[#60A5FA]/20 rounded-[4px]">According to a recent study, excessive daily use is linked to increased anxiety and disrupted sleep patterns</span> <span className="text-[#60A5FA]">(Smith & Johnson, 2021)</span>. Overall, social media shapes how young people see themselves and the world around them.
               </p>
             </div>
           </div>
