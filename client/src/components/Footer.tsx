@@ -1,6 +1,5 @@
 import React from 'react';
 import { Instagram, Twitter, Facebook, Linkedin, Youtube } from 'lucide-react';
-import Logo from './icons/Logo';
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +8,9 @@ const Footer: React.FC = () => {
         {/* Logo and tagline */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-2">
-            <Logo className="w-32 h-auto" />
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center">
+              <div className="text-white text-2xl">S</div>
+            </div>
             <div>
               <h2 className="text-2xl">Reimagine the Word™</h2>
             </div>
