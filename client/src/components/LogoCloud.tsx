@@ -5,7 +5,7 @@ const LogoCloud: React.FC = () => {
   return (
     <section className="py-10 bg-[#FFFFFF] border-t border-b border-[#E8E8E5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-[1240px] mx-auto">
           {/* Detailed Feedback */}
           <div className="flex flex-row items-start md:flex-col md:items-center md:text-center gap-4 md:gap-0">
             <div className="mb-0 md:mb-4">

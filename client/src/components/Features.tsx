@@ -33,24 +33,31 @@ const Features: React.FC = () => {
     <section className="pt-28 pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="max-w-[1200px] w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center">
             {/* Left side content */}
-            <div>
-              <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3.25rem] font-aeonik font-medium leading-[3.75rem] mb-6">
-                See your paper the<br />way a professor would
+            <div className="lg:block">
+              <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3.25rem] font-aeonik font-medium leading-[1.2] sm:leading-[1.3] md:leading-[3.75rem] mb-2 sm:mb-6 text-[#232323]">
+                See your paper the<br className="hidden sm:block" /> way a professor would
               </h2>
-              <p className="text-xl text-gray-600 mb-8 font-aeonik">
+              <p className="text-lg sm:text-xl text-gray-600 mb-0 sm:mb-8 font-aeonik">
                 Get detailed academic feedback and improve it with expert-level insights
               </p>
-              <button className="px-8 py-4 bg-black text-white rounded-full text-lg font-aeonik">
+              <button className="hidden lg:block px-6 sm:px-8 py-4 bg-black text-white rounded-full text-lg font-aeonik">
                 Check my paper
               </button>
             </div>
 
             {/* Right side content */}
-            <div className="relative w-full lg:w-[500px] ml-auto">
+            <div className="relative w-full lg:w-[500px] ml-auto mt-0 lg:mt-0">
+              {/* Main image */}
+              <img 
+                src="student-laptop.png"
+                alt="Student working on laptop"
+                className="rounded-3xl w-full"
+              />
+              
               {/* Plagiarism warning card */}
-              <div className="absolute -top-4 -left-20 bg-white rounded-2xl shadow-lg p-4 w-[312px] z-10">
+              <div className="absolute lg:-top-4 lg:-left-20 bottom-4 right-4 lg:bottom-auto lg:right-auto bg-white rounded-2xl shadow-lg p-4 w-[312px] z-10">
                 <div className="flex items-center gap-2 mb-4">
                   <AlertCircle className="w-5 h-5 text-yellow-500" />
                   <span className="font-medium">High risk of plagiarism</span>
@@ -78,13 +85,13 @@ const Features: React.FC = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Main image */}
-              <img 
-                src="student-laptop.png"
-                alt="Student working on laptop"
-                className="rounded-3xl w-full"
-              />
+            </div>
+            
+            {/* Mobile Check my paper button */}
+            <div className="block lg:hidden mt-8">
+              <button className="w-full px-6 py-4 bg-black text-white rounded-full text-lg font-aeonik">
+                Check my paper
+              </button>
             </div>
           </div>
         </div>

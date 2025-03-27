@@ -21,7 +21,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ image, quote, name, universit
 const CTA: React.FC = () => {
   return (
     <section className="pt-20 pb-[7.5rem] bg-[#FFFFFF]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <h2 className="text-[3.25rem] font-aeonik font-medium leading-[3.75rem] text-[#232323] max-w-[62rem]">
           For students, researchers, professionals, and everyone in between

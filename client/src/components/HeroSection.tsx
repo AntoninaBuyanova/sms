@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-8">
+          <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-8 text-[#232323]">
             <em>Grade</em> and <em>Enhance</em><br />
             Paper in Minutes
           </h1>

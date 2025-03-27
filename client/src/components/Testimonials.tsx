@@ -29,43 +29,45 @@ const TestimonialCard: React.FC<{
 };
 
 const FeatureItem: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
-  <div className="flex flex-col items-start text-left">
-    <div className="mb-6">
+  <div className="flex flex-row md:flex-col items-start md:items-center text-left md:text-center gap-4">
+    <div className="md:mb-3 shrink-0">
       {icon}
     </div>
-    <h3 className="text-base font-medium mb-2">{title}</h3>
-    <p className="text-sm text-gray-500">{description}</p>
+    <div className="md:flex md:flex-col md:items-center">
+      <h3 className="text-base font-medium mb-1 text-[#232323]">{title}</h3>
+      <p className="text-sm text-[#666666] font-aeonik">{description}</p>
+    </div>
   </div>
 );
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-20 bg-[#FFFFFF]">
+    <section className="pt-0 lg:pt-20 pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col lg:flex-row justify-between items-start mb-16">
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start mb-16">
             {/* Heading */}
-            <h2 className="text-[3.25rem] font-medium leading-[3.75rem] mb-8 lg:mb-0">
-              Your toolkit for<br />
-              a perfect paper
+            <h2 className="text-[2rem] lg:text-[3.25rem] font-medium leading-[1.2] lg:leading-[3.75rem] mb-12 lg:mb-0 text-center lg:text-left text-[#232323] max-w-[20ch] lg:max-w-none">
+              Your toolkit for{" "}
+              <span className="lg:block">a perfect paper</span>
             </h2>
 
             {/* Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:w-[55%]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-12 lg:grid-cols-3 lg:w-[55%] w-full justify-items-start">
               <FeatureItem
                 icon={<Lightbulb className="w-8 h-8" />}
                 title="Smart section feedback"
                 description="Get detailed insights for every part of your paper"
               />
               <FeatureItem
-                icon={<FileText className="w-8 h-8" />}
-                title="Citation finder"
-                description="Enhance your paper with in-line citations"
-              />
-              <FeatureItem
                 icon={<Sparkles className="w-8 h-8" />}
                 title="One-click fixes"
                 description="Apply clear fixes instantly, right in the editor"
+              />
+              <FeatureItem
+                icon={<FileText className="w-8 h-8" />}
+                title="Clean, final draft"
+                description="Polished, corrected, and ready to impress"
               />
             </div>
           </div>
@@ -75,7 +77,7 @@ const Testimonials: React.FC = () => {
             <img 
               src="Section.png"
               alt="Section analysis interface"
-              className="w-full h-auto"
+              className="w-full h-auto rounded-[20px]"
             />
           </div>
         </div>
