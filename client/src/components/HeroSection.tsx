@@ -4,71 +4,81 @@ import { AIIcon } from './icons/Logo';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="pt-20 pb-20 overflow-hidden bg-[#FFFFFF]">
+    <section className="pt-6 pb-6 md:pt-20 md:pb-20 overflow-hidden bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           {/* User count banner */}
-          <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="flex items-center justify-center gap-2 mb-6 md:mb-8">
             <div className="flex -space-x-2">
-              <img className="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
-              <img className="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
-              <img className="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
+              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
+              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
+              <img className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User avatar" />
             </div>
-            <span className="text-gray-600">Loved by 500k+ users</span>
+            <span className="text-sm md:text-base text-gray-600">Loved by 500k+ users</span>
           </div>
 
           {/* Main heading */}
-          <h1 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-8 text-[#232323]">
+          <h1 className="text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-4 md:mb-8 text-[#232323]">
             <em>Grade</em> and <em>Enhance</em><br />
             Paper in Minutes
           </h1>
-          <p className="text-base sm:text-lg md:text-xl mb-12 font-aeonik text-gray-600">
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 font-aeonik text-gray-600">
             Instant academic feedback and clear suggestions to boost your writing
           </p>
-          <button className="px-[3.75rem] py-[1.125rem] bg-black text-white rounded-full text-[20px] font-aeonik font-medium mb-16">
+          <button className="px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-black text-white rounded-full text-base md:text-[20px] font-aeonik font-medium mb-0 md:mb-16">
             Enhance my paper
           </button>
 
-          {/* Demo area */}
+          {/* Demo image with floating cards */}
           <div className="hidden sm:block max-w-3xl mx-auto relative">
-            {/* Introduction Section - Center */}
-            <div className="relative z-10 bg-white rounded-t-[1.5rem] pt-6 sm:pt-16 px-4 sm:px-20 pb-6 sm:pb-8 shadow-sm border border-gray-100 max-w-2xl mx-auto">
-              <h3 className="text-base sm:text-lg font-aeonik font-medium mb-3 sm:mb-4">Introduction</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Plastic pollution has become a critical environmental issue affecting marine ecosystems globally. This paper explores the extent and impact of plastic waste on marine life, highlighting how both macroplastics and microplastics contribute to the degradation of oceanic environments. Through an analysis of recent studies, we examine the sources of plastic pollution, including land-based activities and maritime industries, and their pathways into the marine ecosystem. The effects on marine organisms are profound, ranging from physical harm due to ingestion and entanglement to chemical toxicity affecting reproductive and growth processes. The disruption of food chains and habitats not only threatens biodiversity but also has significant socio-economic repercussions for communities reliant on marine resources. This study underscores the urgency for comprehensive strategies involving policy changes, waste management improvements, and international cooperation to
-              </p>
-            </div>
+            {/* Main image */}
+            <img 
+              src="/Frame2.png" 
+              alt="Paper analysis demo" 
+              className="w-[517px] h-auto mx-auto relative z-20"
+            />
 
             {/* AI Content - Top Left */}
-            <div className="hidden sm:block absolute top-12 -left-40 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-[252px] transform -rotate-12 text-left">
-              <div className="absolute top-4 right-4">
-                <AIIcon className="w-[62px] h-[62px]" />
+            <div className="absolute top-12 -left-20 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-[200px] transform -rotate-12 z-30">
+              <div className="flex justify-between items-start">
+                <h3 className="text-sm font-aeonik font-medium text-gray-600">AI Content</h3>
+                <div className="bg-pink-50 rounded-lg p-2">
+                  <AIIcon className="w-[24px] h-[24px]" />
+                </div>
               </div>
-              <h3 className="text-sm font-aeonik font-medium text-gray-600">AI Content</h3>
               <div className="text-[2rem] font-bold mt-2 leading-none">70%</div>
               <p className="text-sm text-gray-500 mt-2">High AI probability</p>
             </div>
 
             {/* Plagiarism - Top Right */}
-            <div className="hidden sm:block absolute -top-8 -right-24 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-64 transform rotate-12">
-              <Shield className="w-6 h-6 text-blue-500 mb-2" />
-              <h3 className="text-sm font-aeonik font-medium text-gray-600">Plagiarism</h3>
-              <div className="text-3xl font-bold mt-1">60%</div>
-              <p className="text-sm text-gray-500 mt-1">High risk of plagiarism</p>
+            <div className="absolute -top-8 -right-24 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-[200px] transform rotate-12 z-30">
+              <div className="flex justify-between items-start">
+                <h3 className="text-sm font-aeonik font-medium text-gray-600">Plagiarism</h3>
+                <div className="bg-blue-50 rounded-lg p-2">
+                  <Shield className="w-5 h-5 text-blue-500" />
+                </div>
+              </div>
+              <div className="text-[2rem] font-bold mt-2 leading-none">60%</div>
+              <p className="text-sm text-gray-500 mt-2">High risk of plagiarism</p>
             </div>
 
             {/* Evidence quality - Bottom Left */}
-            <div className="hidden sm:block absolute -bottom-8 -left-20 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-64 transform rotate-12">
-              <h3 className="text-sm font-aeonik font-medium text-gray-600">Evidence quality</h3>
-              <div className="h-2 bg-yellow-200 rounded-full w-1/3 mt-2"></div>
-              <p className="text-sm text-gray-500 mt-2">Weak supporting evidence</p>
+            <div className="absolute bottom-32 left-12 bg-white rounded-[17.214px] border-[0.861px] border-[#E8E8E5] flex w-[216.902px] transform rotate-[-4.906deg] p-6 z-10 shadow-[0px_17.214px_51.643px_0px_rgba(203,203,203,0.30)]">
+              <div className="w-full">
+                <h3 className="text-sm font-aeonik font-medium text-gray-600 text-left">Evidence quality</h3>
+                <div className="h-2 bg-yellow-200 rounded-full w-1/3 mt-2"></div>
+                <p className="text-sm text-gray-500 mt-2 text-left">Weak supporting evidence</p>
+              </div>
             </div>
 
             {/* Critical thinking - Bottom Right */}
-            <div className="hidden sm:block absolute -bottom-12 -right-20 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-64 transform -rotate-12">
+            <div className="absolute -bottom-12 -right-20 bg-white rounded-xl p-4 shadow-sm border border-gray-100 w-[200px] transform -rotate-12 z-30">
               <h3 className="text-sm font-aeonik font-medium text-gray-600">Critical thinking</h3>
-              <div className="text-lg font-bold text-gray-700">9%</div>
-              <p className="text-sm text-gray-500">Limited critical analysis</p>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="h-1 bg-pink-500 rounded-full w-8"></div>
+                <span className="text-lg font-bold text-gray-700">9%</span>
+              </div>
+              <p className="text-sm text-gray-500 mt-2">Limited critical analysis</p>
             </div>
           </div>
         </div>

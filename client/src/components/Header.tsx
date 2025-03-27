@@ -7,7 +7,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 max-w-[1240px] mx-auto">
           {/* Logo */}
-          <Logo />
+          <div className="w-[100px] md:w-[145px]">
+            <Logo />
+          </div>
           
           {/* Get Started Button */}
           <a 
