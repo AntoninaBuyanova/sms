@@ -24,9 +24,11 @@ const HeroSection: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 font-aeonik text-gray-600">
             Instant academic feedback and clear suggestions to boost your writing
           </p>
-          <button className="px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-black text-white rounded-full text-base md:text-[20px] font-aeonik font-medium">
-            Enhance my paper
-          </button>
+          <div className="flex justify-center">
+            <button className="w-[280px] md:w-auto px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-[#232323] text-white rounded-full text-base md:text-[20px] font-aeonik font-medium">
+              Enhance my paper
+            </button>
+          </div>
 
           {/* Demo image */}
           <div className="hidden sm:block max-w-[1250px] mx-auto">
