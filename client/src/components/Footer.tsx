@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
           {/* Company */}
           <div>
             <h3 className="font-medium mb-4 font-aeonik">Company</h3>
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Writing tools */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-medium mb-4 font-aeonik">Writing tools</h3>
             <ul className="space-y-3">
               <li><a href="https://mystylus.ai/ai-essay-writer/" className="text-[#232323] hover:opacity-70 font-aeonik">AI Writing Assistant</a></li>
@@ -50,9 +50,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Follow Us */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-medium mb-4 font-aeonik">Follow Us</h3>
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               <a href="https://www.linkedin.com/company/mystylus-ai/" className="text-[#232323] hover:opacity-70"><LinkedInIcon className="w-6 h-6" /></a>
               <a href="https://x.com/stylusai/" className="text-[#232323] hover:opacity-70"><TwitterIcon className="w-6 h-6" /></a>
               <a href="https://www.instagram.com/mystylus.ai/" className="text-[#232323] hover:opacity-70"><InstagramIcon className="w-6 h-6" /></a>

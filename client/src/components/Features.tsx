@@ -30,13 +30,13 @@ const FeatureCard: React.FC<{
 
 const Features: React.FC = () => {
   return (
-    <section className="pt-12 md:pt-[100px] lg:pt-28 pb-20 bg-[#FFFFFF]">
+    <section className="pt-12 md:pt-[80px] lg:pt-28 pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="max-w-[1200px] w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center">
             {/* Left side content */}
             <div className="lg:block">
-              <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3.25rem] font-aeonik font-medium leading-[1.2] sm:leading-[1.3] md:leading-[1.2] lg:leading-[3.75rem] mb-2 sm:mb-6 text-[#232323]">
+              <h2 className="text-[2rem] sm:text-[2rem] md:text-[32px] lg:text-[3.25rem] font-aeonik font-medium leading-[1.2] sm:leading-[1.3] md:leading-[1.2] lg:leading-[3.75rem] mb-2 sm:mb-6 text-[#232323]">
                 See your paper the<br className="hidden sm:block" /> way a professor would
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 font-aeonik">
