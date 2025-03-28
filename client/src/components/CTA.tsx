@@ -10,7 +10,7 @@ interface TestimonialProps {
 const Testimonial: React.FC<TestimonialProps> = ({ image, quote, name, university }) => (
   <div className="flex-shrink-0 w-[280px] md:w-full flex flex-col items-start p-6 border border-[#E8E8E5] rounded-[1.25rem] lg:rounded-[2rem] h-full font-aeonik">
     <img src={image} alt={name} className="w-16 lg:w-[100px] h-16 lg:h-[100px] mb-4" />
-    <p className="text-[#232323] mb-6 text-sm md:text-sm lg:text-base leading-relaxed line-clamp-4">{quote}</p>
+    <p className="text-[#232323] mb-6 text-sm md:text-sm lg:text-base leading-relaxed">{quote}</p>
     <div className="mt-auto">
       <p className="font-medium text-xl md:text-base lg:text-[1.25rem]">{name}</p>
       <p className="text-[#232323] text-sm md:text-xs lg:text-sm">{university}</p>
