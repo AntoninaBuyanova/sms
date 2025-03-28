@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AIIcon, PlagiarismIcon } from './icons/Logo';
 
 interface MetricCardProps {
@@ -36,28 +36,55 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, description, clas
 };
 
 const PaperAnalysis: React.FC = () => {
+  const aiCardRef = useRef<HTMLDivElement>(null);
+  const evidenceCardRef = useRef<HTMLDivElement>(null);
+  const plagiarismCardRef = useRef<HTMLDivElement>(null);
+  const criticalCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      
+      if (aiCardRef.current) {
+        aiCardRef.current.style.transform = `translate3d(0, ${scrolled * -0.1}px, 0) scale(${window.innerWidth >= 1536 ? 1 : window.innerWidth >= 1280 ? 0.85 : window.innerWidth >= 1024 ? 0.65 : window.innerWidth >= 768 ? 0.6 : window.innerWidth >= 640 ? 0.55 : 0.45}) rotate(-6deg)`;
+      }
+      if (evidenceCardRef.current) {
+        evidenceCardRef.current.style.transform = `translate3d(${window.innerWidth >= 768 ? '0' : '30%'}, ${scrolled * -0.08}px, 0) scale(${window.innerWidth >= 1536 ? 1 : window.innerWidth >= 1280 ? 0.85 : window.innerWidth >= 1024 ? 0.65 : window.innerWidth >= 768 ? 0.6 : window.innerWidth >= 640 ? 0.55 : 0.45}) rotate(-4.906deg)`;
+      }
+      if (plagiarismCardRef.current) {
+        plagiarismCardRef.current.style.transform = `translate3d(0, ${scrolled * -0.12}px, 0) scale(${window.innerWidth >= 1536 ? 1 : window.innerWidth >= 1280 ? 0.85 : window.innerWidth >= 1024 ? 0.65 : window.innerWidth >= 768 ? 0.6 : window.innerWidth >= 640 ? 0.55 : 0.45}) rotate(6deg)`;
+      }
+      if (criticalCardRef.current) {
+        criticalCardRef.current.style.transform = `translate3d(0, ${scrolled * -0.15}px, 0) scale(${window.innerWidth >= 1536 ? 1 : window.innerWidth >= 1280 ? 0.85 : window.innerWidth >= 1024 ? 0.65 : window.innerWidth >= 768 ? 0.6 : window.innerWidth >= 640 ? 0.55 : 0.45}) rotate(6deg)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="relative pt-6 w-full max-w-[1440px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Left side metrics */}
         <div className="relative z-0 hidden md:flex justify-end min-h-[460px]">
-          <div className="absolute top-0 left-[20%] w-full transform origin-top-left scale-[0.45] sm:scale-[0.55] md:scale-[0.6] lg:scale-[0.65] xl:scale-[0.85] 2xl:scale-100 z-50">
+          <div className="absolute top-0 left-[10%] w-full" ref={aiCardRef}>
             <MetricCard
               label="AI Content"
               value="70%"
               description="High AI probability"
-              className="-rotate-6 mb-4 flex flex-col items-start w-[264.139px] p-[27.565px] relative transition-transform duration-300 ease-out hover:translate-y-[-8px] hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
+              className="flex flex-col items-start w-[264.139px] p-[27.565px] relative transition-transform duration-300 ease-out hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
             >
               <div className="absolute top-4 right-4">
                 <AIIcon className="w-[72px] h-[72px] rotate-[8deg]" />
               </div>
             </MetricCard>
           </div>
-          <div className="absolute left-0 md:left-[50px] lg:left-[100px] xl:left-[200px] 2xl:left-[200px] min-[1550px]:left-[280px] top-[380px] sm:top-[400px] md:top-[250px] lg:top-[250px] xl:top-[250px] 2xl:top-[250px] transform origin-top-left scale-[0.45] sm:scale-[0.55] md:scale-[0.6] lg:scale-[0.65] xl:scale-[0.85] 2xl:scale-100 translate-x-[30%] sm:translate-x-[40%] md:translate-x-0">
+          <div className="absolute left-0 md:left-[50px] lg:left-[100px] xl:left-[200px] 2xl:left-[200px] min-[1550px]:left-[280px] top-[380px] sm:top-[400px] md:top-[250px] lg:top-[250px] xl:top-[250px] 2xl:top-[250px]" ref={evidenceCardRef}>
             <MetricCard
               label="Evidence quality"
               description="Weak supporting evidence"
-              className="flex flex-col items-start w-[264.139px] p-6 -rotate-[4.906deg] rounded-[17.214px] border-[0.861px] border-[#E8E8E5] shadow-[0px_20px_60px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:translate-y-[-8px] hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
+              className="flex flex-col items-start w-[264.139px] p-6 rounded-[17.214px] border-[0.861px] border-[#E8E8E5] shadow-[0px_20px_60px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
             >
               <svg width="170" height="19" viewBox="0 0 170 19" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
                 <rect x="0.626953" y="8" width="168.902" height="3.44285" rx="1.72143" fill="#E8E8E5"/>
@@ -82,26 +109,26 @@ const PaperAnalysis: React.FC = () => {
 
         {/* Right side metrics */}
         <div className="relative hidden md:block min-h-[460px]">
-          <div className="absolute top-[-30px] right-[40px] md:right-[60px] lg:right-[80px] transform origin-top-right scale-[0.45] sm:scale-[0.55] md:scale-[0.6] lg:scale-[0.65] xl:scale-[0.85] 2xl:scale-100 z-40">
+          <div className="absolute top-[-30px] right-[-10px] md:right-[10px] lg:right-[30px] z-40" ref={plagiarismCardRef}>
             <div className="relative">
               <MetricCard
                 label="Plagiarism"
                 value="60%"
                 description="High risk of plagiarism"
-                className="rotate-6 flex flex-col items-start w-[264.139px] p-[27.565px] rounded-[19.771px] border-[0.989px] border-[#E8E8E5] shadow-[0px_19.771px_59.314px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:translate-y-[-8px] hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
+                className="flex flex-col items-start w-[264.139px] p-[27.565px] rounded-[19.771px] border-[0.989px] border-[#E8E8E5] shadow-[0px_19.771px_59.314px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
               />
               <div className="absolute top-8 right-4">
                 <PlagiarismIcon className="w-[72px] h-[72px]" />
               </div>
             </div>
           </div>
-          <div className="absolute top-[300px] right-[180px] md:right-[140px] lg:right-[180px] transform origin-top-right scale-[0.65] xl:scale-[0.85] 2xl:scale-100 z-30">
+          <div className="absolute top-[300px] right-[180px] md:right-[140px] lg:right-[180px] z-30" ref={criticalCardRef}>
             <div className="relative">
               <MetricCard
                 label="Critical thinking"
                 value="9%"
                 description="Limited critical analysis"
-                className="rotate-6 flex flex-col items-start w-[240px] p-6 rounded-[17.214px] border-[0.861px] border-[#E8E8E5] shadow-[0px_20px_60px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:translate-y-[-8px] hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
+                className="flex flex-col items-start w-[240px] p-6 rounded-[17.214px] border-[0.861px] border-[#E8E8E5] shadow-[0px_20px_60px_0px_rgba(203,203,203,0.30)] transition-transform duration-300 ease-out hover:shadow-[0px_25px_65px_0px_rgba(203,203,203,0.35)]"
               >
                 <div className="mt-3">
                   <svg width="154" height="4" viewBox="0 0 154 4" fill="none" xmlns="http://www.w3.org/2000/svg">
