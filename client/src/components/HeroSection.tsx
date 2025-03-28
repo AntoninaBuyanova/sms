@@ -1,10 +1,11 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import { AIIcon } from './icons/Logo';
+import PaperAnalysis from './PaperAnalysis';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="pt-6 pb-6 md:pt-20 md:pb-0 overflow-hidden bg-[#FFFFFF] mb-0 lg:-mb-[40px]">
+    <section className="pt-6 pb-6 md:pt-20 md:pb-0 overflow-hidden bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mx-auto">
           {/* User count banner */}
@@ -24,19 +25,15 @@ const HeroSection: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 font-aeonik text-gray-600">
             Instant academic feedback and clear suggestions to boost your writing
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-12">
             <button className="w-[280px] md:w-auto px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-[#232323] text-white rounded-full text-base md:text-[20px] font-aeonik font-medium">
               Enhance my paper
             </button>
           </div>
 
-          {/* Demo image */}
-          <div className="hidden sm:block max-w-[1250px] mx-auto">
-            <img 
-              src="/frame5.png" 
-              alt="Paper analysis demo" 
-              className="w-full h-auto mx-auto"
-            />
+          {/* Paper Analysis Component */}
+          <div className="hidden sm:block">
+            <PaperAnalysis />
           </div>
         </div>
       </div>
