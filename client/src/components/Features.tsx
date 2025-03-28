@@ -76,7 +76,7 @@ const Features: React.FC = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                        <span className="text-sm">Johnson, A. (2023). Innovative Studies in T...</span>
+                        <span className="text-sm">Johnson, A. (2023). Innovative Studies</span>
                       </li>
                     </ul>
                   </div>
