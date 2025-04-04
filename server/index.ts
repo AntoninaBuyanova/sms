@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import compression from 'compression';
+import { enhancedCompression, setCacheHeaders } from "./compression-middleware";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { createServer } from 'vite';
@@ -10,19 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Enable compression for all responses
-app.use(compression({
-  level: 6, // Compression level (1-9, where 9 is best compression but slowest)
-  threshold: 1024, // Only compress responses that are larger than 1KB
-  filter: (req: Request, res: Response) => {
-    // Don't compress responses with this header
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    // Use compression filter function from the module
-    return compression.filter(req, res);
-  }
-}));
+// Enable enhanced compression for all responses
+app.use(enhancedCompression());
+
+// Set proper cache headers
+app.use(setCacheHeaders);
 
 app.use((req, res, next) => {
   // Remove any restrictive headers
@@ -93,24 +85,22 @@ app.use((req, res, next) => {
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    log(`serving on port ${port} with enhanced compression`);
   });
 })();
 
-// Serve static files with correct cache headers
+// Serve static files with improved cache headers
 app.use(express.static('dist/public', {
   maxAge: '1y',
   etag: true,
   lastModified: true,
+  immutable: true,
   setHeaders: (res: Response, path: string) => {
-    // Set cache headers based on file type
-    if (path.endsWith('.js') || path.endsWith('.css')) {
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    } else if (path.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
+    // Already handled by setCacheHeaders middleware
+    // Add additional headers for HTTP/2 push if needed
+    if (path.endsWith('.html')) {
+      res.setHeader('Link', '</pdf.png>; rel=preload; as=image');
     }
-    // Enable Brotli/Gzip content negotiation
-    res.setHeader('Vary', 'Accept-Encoding');
   }
 }));
 

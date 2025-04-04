@@ -5,12 +5,249 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>myStylus - Grade and Enhance
     Paper in Minutes</title>
+  
+  <!-- Critical CSS -->
+  <style>
+/* Critical CSS for myStylus - optimized for LCP */
+
+/* Core layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFFFF;
+  color: #232323;
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Typography for LCP heading */
+h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #232323;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h2 {
+    font-size: 3.25rem;
+    line-height: 3.75rem;
+  }
+}
+
+/* Layout helpers */
+.text-left {
+  text-align: left;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+/* Grid layout for cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+/* LCP optimizations */
+[data-lcp="true"],
+h2.lcp-loaded {
+  content-visibility: visible !important;
+  contain: none !important;
+  display: block !important;
+  transform: translateZ(0);
+}
+
+/* Critical image sizing */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Section styling */
+section {
+  padding-top: 0;
+  padding-bottom: 5rem;
+}
+  </style>
+  
+  <!-- Preload early optimization scripts -->
+  <link rel="preload" href="/optimize-lcp.js" as="script">
+  <link rel="preload" href="/loading-strategy.js" as="script">
+  
+  <!-- Resource hints for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/Favicon (1).png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical LCP assets -->
+  <link rel="preload" href="/pdf.png" as="image" fetchpriority="high">
+  
+  <!-- Early execution for rendering optimization -->
+  <script>
+  // Immediately set up LCP detection
+  if ('PerformanceObserver' in window) {
+    try {
+      new PerformanceObserver((list) => {
+        list.getEntries().forEach(entry => {
+          if (entry.element) {
+            entry.element.setAttribute('data-lcp', 'true');
+            console.log('LCP detected:', entry.startTime);
+          }
+        });
+      }).observe({type: 'largest-contentful-paint', buffered: true});
+    } catch (e) {
+      console.log('LCP observer error:', e);
+    }
+  }
+  </script>
+  
+  <!-- Load the optimization scripts before anything else -->
+  <script src="/loading-strategy.js"></script>
+  <script src="/optimize-lcp.js"></script>
+  
+  <!-- Meta tags -->
   <meta name="description" content="myStylus helps you craft perfect content by analyzing your text and providing real-time suggestions to enhance your writing style, clarity, and impact." />
+  
+  <!-- Defer non-critical CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Font fallbacks -->
+  <style>
+    /* Font display optimization */
+    @font-face {
+      font-family: 'Aeonik Pro';
+      font-display: swap;
+      font-weight: 400;
+      src: local('Aeonik Pro'), url('/src/fonts/aeonikpro-regular.otf') format('opentype');
+      font-style: normal;
+    }
+    
+    /* Add a system font fallback */
+    .font-aeonik {
+      font-family: 'Aeonik Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    /* Prevent content from being invisible during font loading */
+    .text-render-opt {
+      text-rendering: optimizeSpeed;
+    }
+    
+    /* Prevent layout shifts with images and aspect ratios */
+    .aspect-box {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+    }
+    .aspect-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+  
+  <!-- Optimize the loading of JavaScript -->
+  <script>
+    // Track and optimize LCP
+    const lcpObserver = new PerformanceObserver((entryList) => {
+      for (const entry of entryList.getEntries()) {
+        // Add 'loaded' class to help style LCP element once it's loaded
+        if (entry.element) {
+          entry.element.classList.add('loaded');
+        }
+      }
+    });
+    lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
+    
+    // Preload key images for LCP
+    const preloadImage = (url) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = url;
+      link.fetchPriority = 'high';
+      document.head.appendChild(link);
+    };
+    preloadImage('/pdf.png');
+    
+    // Mark when the page becomes interactive to improve metrics
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mark page as loaded
+      document.documentElement.classList.add('dom-loaded');
+    });
+    
+    // Break long tasks to improve interactivity
+    const yieldToMain = () => new Promise(resolve => {
+      setTimeout(resolve, 0);
+    });
+    
+    // Function to eliminate render-blocking
+    const optimizeFonts = async () => {
+      // Allow processing of other tasks
+      await yieldToMain();
+      
+      // Add font optimization
+      const fontStyle = document.createElement('style');
+      fontStyle.textContent = `
+        @font-face {
+          font-family: 'Aeonik Pro Subset';
+          font-display: swap;
+          src: local('Arial');
+          unicode-range: U+0000-007F;
+        }
+      `;
+      document.head.appendChild(fontStyle);
+    };
+    
+    // Execute font optimization without blocking
+    requestIdleCallback ? requestIdleCallback(optimizeFonts) : setTimeout(optimizeFonts, 200);
+  </script>
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="/src/main.tsx" defer></script>
 </body>
 </html>
