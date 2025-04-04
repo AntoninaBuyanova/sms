@@ -24,9 +24,9 @@ export function log(message: string, source = "express") {
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
-    middlewareMode: true,
+    middlewareMode: true as const,
     hmr: { server },
-    allowedHosts: true,
+    allowedHosts: ['localhost', '*.repl.co', '*.repl.dev'],
   };
 
   const vite = await createViteServer({
@@ -39,8 +39,11 @@ export async function setupVite(app: Express, server: Server) {
         process.exit(1);
       },
     },
-    server: serverOptions,
-    appType: "custom",
+    server: {
+      ...viteConfig.server,
+      ...serverOptions,
+    },
+    appType: "custom" as const,
   });
 
   app.use(vite.middlewares);

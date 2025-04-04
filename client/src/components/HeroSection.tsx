@@ -19,10 +19,15 @@ const HeroSection: React.FC = () => {
 
           {/* Main heading */}
           <h1 className="text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-4 md:mb-8 text-[#232323]">
-            <em>Grade</em> and <em>Enhance</em><br />
-            Paper in Minutes
+            <span className="inline-block">
+              <em className="not-italic font-orbikular" style={{ fontVariationSettings: "'wght' 500" }}>Grade</em>
+              <span className="inline-block mx-2">and</span>
+              <em className="not-italic font-orbikular" style={{ fontVariationSettings: "'wght' 500" }}>Enhance</em>
+            </span>
+            <br />
+            <span className="inline-block">Paper in Minutes</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 font-aeonik text-gray-600">
+          <p className="font-['Aeonik Pro'] text-base sm:text-lg md:text-xl mb-6 md:mb-12 text-gray-600">
             Instant academic feedback and clear suggestions to boost your writing
           </p>
           <div className="flex justify-center mb-0 md:mb-12">

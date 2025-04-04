@@ -1,12 +1,40 @@
-import express, { type Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import compression from 'compression';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { createServer } from 'vite';
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Enable compression for all responses
+app.use(compression({
+  level: 6, // Compression level (1-9, where 9 is best compression but slowest)
+  threshold: 1024, // Only compress responses that are larger than 1KB
+  filter: (req: Request, res: Response) => {
+    // Don't compress responses with this header
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    // Use compression filter function from the module
+    return compression.filter(req, res);
+  }
+}));
+
 app.use((req, res, next) => {
+  // Remove any restrictive headers
+  res.removeHeader('X-Robots-Tag');
+  res.removeHeader('X-Frame-Options');
+  res.removeHeader('X-Content-Type-Options');
+
+  // Add SEO-friendly headers
+  res.setHeader('X-Robots-Tag', 'index, follow');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
@@ -68,3 +96,32 @@ app.use((req, res, next) => {
     log(`serving on port ${port}`);
   });
 })();
+
+// Serve static files with correct cache headers
+app.use(express.static('dist/public', {
+  maxAge: '1y',
+  etag: true,
+  lastModified: true,
+  setHeaders: (res: Response, path: string) => {
+    // Set cache headers based on file type
+    if (path.endsWith('.js') || path.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (path.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+    // Enable Brotli/Gzip content negotiation
+    res.setHeader('Vary', 'Accept-Encoding');
+  }
+}));
+
+// Handle all other routes
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(join(process.cwd(), 'dist/public/index.html'));
+});
+
+// Error handling
+app.use((err: Error, req: Request, res: Response, next: express.NextFunction) => {
+  console.error(err.stack);
+  const message = err.message || "Internal Server Error";
+  res.status(500).send(message);
+});
