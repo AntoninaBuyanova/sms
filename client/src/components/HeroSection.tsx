@@ -1,7 +1,6 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import { AIIcon } from './icons/Logo';
-import PaperAnalysis from './PaperAnalysis';
 
 const HeroSection: React.FC = () => {
   return (
@@ -10,35 +9,35 @@ const HeroSection: React.FC = () => {
         <div className="text-center mx-auto">
           {/* User count banner */}
           <div className="inline-flex items-center gap-2 mb-6 md:mb-8 border border-[#E8E8E5] rounded-full px-4 py-2">
-            <img src="/users.png" alt="User avatars" className="h-6 md:h-8 w-auto" />
+            <img src="/user.png" alt="Academic library icon" className="h-6 md:h-8 w-auto" />
             <div className="text-sm md:text-base text-[#232323] font-aeonik">
-              <span className="font-normal">Loved by </span>
-              <span className="font-medium">500k+ users</span>
+              <span className="font-normal">Only trusted </span>
+              <span className="font-medium">academic libraries</span>
             </div>
           </div>
 
           {/* Main heading */}
-          <h1 className="text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] font-orbikular mb-4 md:mb-8 text-[#232323]">
-            <span className="inline-block">
-              <em className="not-italic font-orbikular" style={{ fontVariationSettings: "'wght' 500" }}>Grade</em>
-              <span className="inline-block mx-2">and</span>
-              <em className="not-italic font-orbikular" style={{ fontVariationSettings: "'wght' 500" }}>Enhance</em>
-            </span>
+          <h1 className="text-[2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[5rem] leading-[1.1] sm:leading-[1.2] md:leading-[1.2] mb-4 md:mb-8 text-[#232323]" style={{ fontFamily: '"Orbikular Variable"', fontStyle: 'normal', fontWeight: 400 }}>
+            Strengthen Your Paper
             <br />
-            <span className="inline-block">Paper in Minutes</span>
+            with <em style={{ fontStyle: 'italic' }}>Verified Citations</em>
           </h1>
           <p className="font-['Aeonik Pro'] text-base sm:text-lg md:text-xl mb-6 md:mb-12 text-gray-600">
-            Instant academic feedback and clear suggestions to boost your writing
+            Get sources and citations from JSTOR, Google Scholar, Semantic Scholar, and more —
+            <br />
+            all tailored to your topic
           </p>
           <div className="flex justify-center mb-0 md:mb-12">
-            <button className="w-[280px] md:w-auto px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-[#232323] text-white rounded-full text-base md:text-[20px] font-aeonik font-medium">
-              Enhance my paper
-            </button>
+            <a href="https://mystylus.ai/sms">
+              <button className="w-[280px] md:w-auto px-6 md:px-[3.75rem] py-3 md:py-[1.125rem] bg-[#232323] text-white rounded-full text-base md:text-[20px] font-aeonik font-medium">
+                Search now – it's free
+              </button>
+            </a>
           </div>
 
-          {/* Paper Analysis Component */}
+          {/* SMS Image */}
           <div className="hidden sm:block">
-            <PaperAnalysis />
+            <img src="/sms.webp" alt="Citations showcase" className="mx-auto max-w-full" />
           </div>
         </div>
       </div>

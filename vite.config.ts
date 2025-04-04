@@ -32,8 +32,8 @@ export default defineConfig({
   root: path.resolve(__dirname, "client"),
   server: {
     host: '0.0.0.0',
-    port: 5000,
-    allowedHosts: ['localhost', '*.repl.co', '*.repl.dev', '*.worf.replit.dev']
+    port: 3000,
+    allowedHosts: ['e7c7befb-b54b-4e28-b2ee-aa065b8367cd-00-3lwbfktb3mysn.worf.replit.dev']
   },
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
