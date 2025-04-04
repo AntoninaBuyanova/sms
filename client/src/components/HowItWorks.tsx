@@ -14,7 +14,7 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, image, isLarge, isWider, reducedHeight, extraReducedHeight, className, children }) => {
   return (
-    <div className={`bg-[#F9F9F7] rounded-[40px] border border-[#E8E8E5] ${isLarge ? 'col-span-2 pt-8 px-8 pb-0' : isWider ? 'lg:col-span-3 pt-8 px-8 pb-0 flex flex-col' : 'lg:col-span-2 p-8'} ${className || ''}`}>
+    <div className={`bg-[#F8F8F3] rounded-[40px] border border-[#E8E8E5] ${isLarge ? 'col-span-2 pt-8 px-8 pb-0' : isWider ? 'lg:col-span-3 pt-8 px-8 pb-0 flex flex-col' : 'lg:col-span-2 p-8'} ${className || ''}`}>
       <div>
         <h3 className={`text-2xl font-medium ${extraReducedHeight ? 'mb-3' : reducedHeight ? 'mb-2' : 'mb-3'} text-[#232323]`}>{title}</h3>
         <p className={`font-['Aeonik_Pro'] text-[#232323] ${isWider && extraReducedHeight ? 'mb-3' : isWider ? 'mb-2' : extraReducedHeight ? 'mb-3' : reducedHeight ? 'mb-4' : 'mb-6'}`}>{description}</p>
