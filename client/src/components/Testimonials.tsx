@@ -36,13 +36,13 @@ interface StatCardProps {
 
 const StatCard: React.FC<StatCardProps> = ({ icon, value, description }) => {
   return (
-    <div className="bg-white p-8 rounded-[32px] border border-[#F0F0F0] flex items-center">
-      <div className="mr-8">
+    <div className="bg-white p-6 md:p-7 lg:p-8 rounded-[32px] border border-[#F0F0F0] flex items-center">
+      <div className="min-w-[4.5rem] w-[4.5rem] flex justify-center mr-4 lg:mr-8">
         {icon}
       </div>
       <div>
-        <h3 className="text-4xl font-medium text-[#232323] mb-2 font-['Aeonik_Pro']">{value}</h3>
-        <p className="text-base font-normal text-[#232323] font-['Aeonik_Pro']">{description}</p>
+        <h3 className="text-3xl md:text-3xl lg:text-4xl font-medium text-[#232323] mb-1 lg:mb-2 font-['Aeonik_Pro']">{value}</h3>
+        <p className="text-sm md:text-sm lg:text-base font-normal text-[#232323] font-['Aeonik_Pro']">{description}</p>
       </div>
     </div>
   );
@@ -50,7 +50,7 @@ const StatCard: React.FC<StatCardProps> = ({ icon, value, description }) => {
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="pt-0 pb-20 bg-[#FFFFFF]">
+    <section className="pt-0 pb-12 md:pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-12 text-left">
@@ -61,24 +61,24 @@ const Testimonials: React.FC = () => {
           </div>
 
           {/* Stat Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <StatCard 
-              icon={<img src="timer.png" alt="Timer" className="w-[4.875rem] h-[4.875rem]" />}
+              icon={<img src="timer.png" alt="Timer" className="w-[3.5rem] md:w-[4rem] lg:w-[4.875rem]" />}
               value="10h+"
               description="Saved weekly by skipping manual research work"
             />
             <StatCard 
-              icon={<img src="books.png" alt="Books" className="w-[4.875rem] h-[4.875rem]" />}
+              icon={<img src="books.png" alt="Books" className="w-[3.5rem] md:w-[4rem] lg:w-[4.875rem]" />}
               value="100M+"
               description="Papers scanned from JSTOR, Semantic Scholar, ArXiv & more"
             />
             <StatCard 
-              icon={<img src="pensilline.png" alt="Pencil" className="w-[4.875rem] h-[4.875rem]" />}
+              icon={<img src="pensilline.png" alt="Pencil" className="w-[3.5rem] md:w-[4rem] lg:w-[4.875rem]" />}
               value="5x"
               description="Faster writing with sources, quotes, and summaries"
             />
             <StatCard 
-              icon={<img src="chart.png" alt="Chart" className="w-[4.875rem] h-[4.875rem]" />}
+              icon={<img src="chart.png" alt="Chart" className="w-[3.5rem] md:w-[4rem] lg:w-[4.875rem]" />}
               value="99%"
               description="Of results are relevant — no off-topic papers"
             />

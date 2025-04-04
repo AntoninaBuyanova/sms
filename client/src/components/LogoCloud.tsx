@@ -4,7 +4,7 @@ import React from 'react';
 
 const LogoCloud: React.FC = () => {
   return (
-    <section className="py-6 md:py-10 bg-[#FFFFFF]">
+    <section className="hidden md:block py-6 md:py-10 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
           <img src="/Uni (1).png" alt="University logos" className="max-w-full" />

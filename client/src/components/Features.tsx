@@ -30,51 +30,51 @@ const FeatureCard: React.FC<{
 
 const Features: React.FC = () => {
   return (
-    <section className="pt-12 md:pt-[80px] lg:pt-20 xl:pt-[5rem] pb-20 bg-[#FFFFFF]">
+    <section className="pt-12 md:pt-[60px] lg:pt-20 xl:pt-[5rem] pb-12 md:pb-16 lg:pb-20 bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="max-w-[1200px] w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 lg:gap-12 items-center">
             {/* Left side content - Image */}
-            <div className="relative w-full lg:w-[550px] xl:w-[600px] mt-0 lg:mt-0 order-2 lg:order-1">
+            <div className="relative w-full md:col-span-5 lg:col-span-6 md:max-w-none lg:w-[550px] xl:w-[600px] mt-0 order-2 md:order-1">
               {/* Main image */}
               <img 
                 src="/get.png"
                 alt="Citation sources interface"
-                className="rounded-3xl w-full"
+                className="rounded-3xl w-full md:max-w-[95%]"
               />
             </div>
 
             {/* Right side content - Text */}
-            <div className="lg:block order-1 lg:order-2">
-              <h2 className="text-[2rem] sm:text-[2rem] md:text-[32px] lg:text-[3.25rem] font-aeonik font-medium leading-[1.2] sm:leading-[1.3] md:leading-[1.2] lg:leading-[3.75rem] mb-6 text-[#232323]">
+            <div className="md:col-span-7 lg:col-span-6 md:pl-4 lg:pl-0 order-1 md:order-2">
+              <h2 className="text-[2rem] md:text-[2.2rem] lg:text-[3.25rem] font-aeonik font-medium leading-[1.2] md:leading-[1.3] lg:leading-[3.75rem] mb-6 text-[#232323]">
                 Get verified sources<br className="hidden sm:block" /> with citations
               </h2>
               
               {/* Feature list */}
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 md:space-y-4 mb-6 md:mb-8">
                 <li className="flex items-start">
-                  <Check className="w-6 h-6 text-[#232323] mr-3 mt-0.5" />
-                  <span className="text-lg text-[#232323]">We deliver 20+ top papers tailored to your topic</span>
+                  <Check className="min-w-[24px] w-6 h-6 text-[#232323] mr-3 mt-0.5" />
+                  <span className="text-base md:text-base lg:text-lg text-[#232323]">We deliver 20+ top papers tailored to your topic</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-6 h-6 text-[#232323] mr-3 mt-0.5" />
-                  <span className="text-lg text-[#232323]">Each result comes with key insights, quotes and links</span>
+                  <Check className="min-w-[24px] w-6 h-6 text-[#232323] mr-3 mt-0.5" />
+                  <span className="text-base md:text-base lg:text-lg text-[#232323]">Each result comes with key insights, quotes and links</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-6 h-6 text-[#232323] mr-3 mt-0.5" />
-                  <span className="text-lg text-[#232323]">Export citations instantly in APA, MLA, Chicago, and more styles</span>
+                  <Check className="min-w-[24px] w-6 h-6 text-[#232323] mr-3 mt-0.5" />
+                  <span className="text-base md:text-base lg:text-lg text-[#232323]">Export citations instantly in APA, MLA, Chicago, and more styles</span>
                 </li>
               </ul>
               
               <a href="https://mystylus.ai/sms">
-                <button className="hidden lg:block px-[3.75rem] py-[1.125rem] bg-[#232323] text-white rounded-full text-lg font-aeonik font-medium">
+                <button className="hidden md:block px-8 lg:px-[3.75rem] py-3 lg:py-[1.125rem] bg-[#232323] text-white rounded-full text-base lg:text-lg font-aeonik font-medium">
                   Get Started
                 </button>
               </a>
             </div>
             
             {/* Mobile Check my paper button */}
-            <div className="block lg:hidden mt-8 order-3">
+            <div className="block md:hidden order-3 md:col-span-12">
               <a href="https://mystylus.ai/sms">
                 <button className="w-full px-[3.75rem] py-[1.125rem] bg-[#232323] text-white rounded-full text-lg font-aeonik font-medium">
                   Get Started

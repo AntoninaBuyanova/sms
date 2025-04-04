@@ -4,7 +4,7 @@ import { AIIcon } from './icons/Logo';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="pt-6 pb-6 md:pt-20 md:pb-0 overflow-hidden bg-[#FFFFFF]">
+    <section className="pt-6 pb-0 md:pt-20 md:pb-0 overflow-hidden bg-[#FFFFFF]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mx-auto">
           {/* User count banner */}
