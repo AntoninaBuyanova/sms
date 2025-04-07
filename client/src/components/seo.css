@@ -1,0 +1,250 @@
+/* SEO-оптимизированные стили для компонентов */
+
+/* Стили для оптимизированных изображений */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  background-color: #f9f9f9;
+}
+
+.image-figure {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  display: block;
+}
+
+.image-caption {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #666;
+  padding: 0.5rem 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.image-credit {
+  color: #888;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+/* Улучшения для Largest Contentful Paint элементов */
+[data-lcp="true"] {
+  transition: transform 0.1s ease-out;
+}
+
+/* Стили для SEO-оптимизированных заголовков */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 2rem;
+}
+
+.article-heading {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.article-heading a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+
+.article-heading a:hover::after {
+  content: "#";
+  position: absolute;
+  left: -1.2em;
+  color: #aaa;
+  font-weight: 400;
+}
+
+/* Стили для микроразметки FAQ */
+.faq-section {
+  margin: 2rem 0;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.faq-question {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.faq-answer {
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Разметка хлебных крошек */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin: 0 0.5rem;
+  color: #ccc;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Разметка рейтингов для SEO */
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.rating-value {
+  color: #333;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.rating-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Стили для разделов HowTo для структурированных данных */
+.how-to-section {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.how-to-step {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.how-to-step-number {
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #4F46E5;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.how-to-step-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.how-to-step-description {
+  color: #444;
+  line-height: 1.6;
+}
+
+/* SEO-оптимизация для таблиц */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.responsive-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+}
+
+.responsive-table th {
+  background-color: #f5f5f5;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.responsive-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.responsive-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Вспомогательные классы для SEO */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+} 

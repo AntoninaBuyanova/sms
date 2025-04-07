@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import Header from '@/components/Header';
+
+// Import only the most critical components eagerly
 import HeroSection from '@/components/HeroSection';
-import LogoCloud from '@/components/LogoCloud';
-import Features from '@/components/Features';
-import Testimonials from '@/components/Testimonials';
-import HowItWorks from '@/components/HowItWorks';
-import CTA from '@/components/CTA';
-import Footer from '@/components/Footer';
+
+// Lazy load below-the-fold components
+const LogoCloud = lazy(() => import('@/components/LogoCloud'));
+const Features = lazy(() => import('@/components/Features'));
+const Testimonials = lazy(() => import('@/components/Testimonials'));
+const HowItWorks = lazy(() => import('@/components/HowItWorks'));
+const CTA = lazy(() => import('@/components/CTA'));
+const Footer = lazy(() => import('@/components/Footer'));
+
+// Simple fallback for lazy components
+const SectionFallback = () => <div className="w-full h-32 bg-slate-50"></div>;
 
 const Home: React.FC = () => {
   useEffect(() => {
@@ -30,6 +37,14 @@ const Home: React.FC = () => {
 
     document.addEventListener('click', handleAnchorClick);
     
+    // Preload below-the-fold components when browser is idle
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        import('@/components/Features');
+        import('@/components/HowItWorks');
+      });
+    }
+    
     return () => {
       document.removeEventListener('click', handleAnchorClick);
     };
@@ -39,12 +54,31 @@ const Home: React.FC = () => {
     <div className="bg-slate-50 text-slate-800 font-sans antialiased">
       <Header />
       <HeroSection />
-      <LogoCloud />
-      <Features />
-      <Testimonials />
-      <HowItWorks />
-      <CTA />
-      <Footer />
+      
+      {/* Lazy loaded content with visibility detection */}
+      <Suspense fallback={<SectionFallback />}>
+        <LogoCloud />
+      </Suspense>
+      
+      <Suspense fallback={<SectionFallback />}>
+        <Features />
+      </Suspense>
+      
+      <Suspense fallback={<SectionFallback />}>
+        <Testimonials />
+      </Suspense>
+      
+      <Suspense fallback={<SectionFallback />}>
+        <HowItWorks />
+      </Suspense>
+      
+      <Suspense fallback={<SectionFallback />}>
+        <CTA />
+      </Suspense>
+      
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

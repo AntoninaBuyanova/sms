@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+                            http://www.google.com/schemas/sitemap-image/1.1
+                            http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+  <!-- Главная страница -->
+  <url>
+    <loc>https://mystylus.com/</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mystylus.com/pdf.png</image:loc>
+      <image:title>myStylus - Анализ PDF</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Страница "О нас" -->
+  <url>
+    <loc>https://mystylus.com/about</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Функции -->
+  <url>
+    <loc>https://mystylus.com/features</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mystylus.com/sources.png</image:loc>
+      <image:title>Функции myStylus</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Цены -->
+  <url>
+    <loc>https://mystylus.com/pricing</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Блог -->
+  <url>
+    <loc>https://mystylus.com/blog</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Статья блога 1 -->
+  <url>
+    <loc>https://mystylus.com/blog/how-to-write-research-paper</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Статья блога 2 -->
+  <url>
+    <loc>https://mystylus.com/blog/citation-styles-guide</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Контакты -->
+  <url>
+    <loc>https://mystylus.com/contact</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- FAQ -->
+  <url>
+    <loc>https://mystylus.com/faq</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset> 

@@ -1,0 +1,54 @@
+{
+  "name": "myStylus - Анализ и улучшение академических текстов",
+  "short_name": "myStylus",
+  "description": "Интеллектуальный помощник для анализа научных работ, поиска цитат и управления источниками",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Поиск источников",
+      "short_name": "Поиск",
+      "description": "Быстрый поиск по академическим базам данных",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/shortcut-search.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Загрузить PDF",
+      "short_name": "Загрузить",
+      "description": "Загрузить PDF для анализа",
+      "url": "/upload",
+      "icons": [
+        {
+          "src": "/shortcut-upload.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "categories": ["education", "productivity", "utilities"],
+  "dir": "ltr",
+  "lang": "ru",
+  "prefer_related_applications": false
+} 

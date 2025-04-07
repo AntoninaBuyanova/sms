@@ -1,0 +1,269 @@
+{
+  "Banner (1)": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/Banner (1)-320.avif 320w",
+        "sizes": [
+          320
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/Banner (1)-320.png 320w",
+        "sizes": [
+          320
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/Banner (1)-320.webp 320w",
+        "sizes": [
+          320
+        ]
+      }
+    }
+  },
+  "Banner (2)": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/Banner (2)-320.avif 320w, /optimized/Banner (2)-640.avif 640w, /optimized/Banner (2)-768.avif 768w, /optimized/Banner (2)-1024.avif 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/Banner (2)-320.png 320w, /optimized/Banner (2)-640.png 640w, /optimized/Banner (2)-768.png 768w, /optimized/Banner (2)-1024.png 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/Banner (2)-320.webp 320w, /optimized/Banner (2)-640.webp 640w, /optimized/Banner (2)-768.webp 768w, /optimized/Banner (2)-1024.webp 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      }
+    }
+  },
+  "Uni (1)": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/Uni (1)-320.avif 320w, /optimized/Uni (1)-640.avif 640w, /optimized/Uni (1)-768.avif 768w, /optimized/Uni (1)-1024.avif 1024w, /optimized/Uni (1)-1366.avif 1366w, /optimized/Uni (1)-1600.avif 1600w, /optimized/Uni (1)-1920.avif 1920w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366,
+          1600,
+          1920
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/Uni (1)-320.png 320w, /optimized/Uni (1)-640.png 640w, /optimized/Uni (1)-768.png 768w, /optimized/Uni (1)-1024.png 1024w, /optimized/Uni (1)-1366.png 1366w, /optimized/Uni (1)-1600.png 1600w, /optimized/Uni (1)-1920.png 1920w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366,
+          1600,
+          1920
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/Uni (1)-320.webp 320w, /optimized/Uni (1)-640.webp 640w, /optimized/Uni (1)-768.webp 768w, /optimized/Uni (1)-1024.webp 1024w, /optimized/Uni (1)-1366.webp 1366w, /optimized/Uni (1)-1600.webp 1600w, /optimized/Uni (1)-1920.webp 1920w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366,
+          1600,
+          1920
+        ]
+      }
+    }
+  },
+  "get": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/get-320.avif 320w, /optimized/get-640.avif 640w, /optimized/get-768.avif 768w, /optimized/get-1024.avif 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/get-320.png 320w, /optimized/get-640.png 640w, /optimized/get-768.png 768w, /optimized/get-1024.png 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/get-320.webp 320w, /optimized/get-640.webp 640w, /optimized/get-768.webp 768w, /optimized/get-1024.webp 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      }
+    }
+  },
+  "google": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/google-320.avif 320w, /optimized/google-640.avif 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/google-320.png 320w, /optimized/google-640.png 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/google-320.webp 320w, /optimized/google-640.webp 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      }
+    }
+  },
+  "pdf": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/pdf-320.avif 320w, /optimized/pdf-640.avif 640w, /optimized/pdf-768.avif 768w, /optimized/pdf-1024.avif 1024w, /optimized/pdf-1366.avif 1366w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/pdf-320.png 320w, /optimized/pdf-640.png 640w, /optimized/pdf-768.png 768w, /optimized/pdf-1024.png 1024w, /optimized/pdf-1366.png 1366w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/pdf-320.webp 320w, /optimized/pdf-640.webp 640w, /optimized/pdf-768.webp 768w, /optimized/pdf-1024.webp 1024w, /optimized/pdf-1366.webp 1366w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366
+        ]
+      }
+    }
+  },
+  "referenceu": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/referenceu-320.avif 320w, /optimized/referenceu-640.avif 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/referenceu-320.png 320w, /optimized/referenceu-640.png 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/referenceu-320.webp 320w, /optimized/referenceu-640.webp 640w",
+        "sizes": [
+          320,
+          640
+        ]
+      }
+    }
+  },
+  "sms": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/sms-320.avif 320w, /optimized/sms-640.avif 640w, /optimized/sms-768.avif 768w, /optimized/sms-1024.avif 1024w, /optimized/sms-1366.avif 1366w, /optimized/sms-1600.avif 1600w, /optimized/sms-1920.avif 1920w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366,
+          1600,
+          1920
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/sms-320.webp 320w, /optimized/sms-640.webp 640w, /optimized/sms-768.webp 768w, /optimized/sms-1024.webp 1024w, /optimized/sms-1366.webp 1366w, /optimized/sms-1600.webp 1600w, /optimized/sms-1920.webp 1920w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024,
+          1366,
+          1600,
+          1920
+        ]
+      }
+    }
+  },
+  "sources": {
+    "formats": {
+      "avif": {
+        "srcset": "/optimized/sources-320.avif 320w, /optimized/sources-640.avif 640w, /optimized/sources-768.avif 768w, /optimized/sources-1024.avif 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "png": {
+        "srcset": "/optimized/sources-320.png 320w, /optimized/sources-640.png 640w, /optimized/sources-768.png 768w, /optimized/sources-1024.png 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      },
+      "webp": {
+        "srcset": "/optimized/sources-320.webp 320w, /optimized/sources-640.webp 640w, /optimized/sources-768.webp 768w, /optimized/sources-1024.webp 1024w",
+        "sizes": [
+          320,
+          640,
+          768,
+          1024
+        ]
+      }
+    }
+  }
+}

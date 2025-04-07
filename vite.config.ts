@@ -1,23 +1,50 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path, { dirname } from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath } from "url";
 import viteCompression from 'vite-plugin-compression';
 import viteImagemin from 'vite-plugin-imagemin';
 import { splitVendorChunkPlugin } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import legacy from '@vitejs/plugin-legacy';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Detect environment
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 export default defineConfig({
   plugins: [
-    react(),
-    runtimeErrorOverlay(),
-    themePlugin(),
+    react({
+      // Improve tree-shaking by using the modern JSX transform
+      jsxRuntime: 'automatic',
+    }),
     // Add code splitting
     splitVendorChunkPlugin(),
+    // HTML optimization and resource injection
+    createHtmlPlugin({
+      minify: true,
+      inject: {
+        data: {
+          injectScript: isDevelopment 
+            ? '' 
+            : '<link rel="modulepreload" href="/assets/vendor.js" /><link rel="modulepreload" href="/assets/react-core.js" />',
+        },
+      },
+    }),
+    // Legacy browser support
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+    // Analyze bundle size in production
+    process.env.ANALYZE === 'true' && visualizer({
+      filename: './dist/stats.html',
+      gzipSize: true,
+      brotliSize: true,
+      open: true
+    }),
     // Add Gzip compression
     viteCompression({
       verbose: true,
@@ -65,14 +92,6 @@ export default defineConfig({
         ],
       },
     }),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
   ],
   resolve: {
     alias: {
@@ -85,7 +104,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: ['e7c7befb-b54b-4e28-b2ee-aa065b8367cd-00-3lwbfktb3mysn.worf.replit.dev']
   },
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
@@ -97,27 +115,98 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.debug', 'console.info'],
+        passes: 2, // Multiple passes for better optimization
+      },
+      mangle: {
+        safari10: true,
+      },
+      format: {
+        comments: false, // Remove all comments
       },
     },
     rollupOptions: {
       output: {
-        // Chunk files based on size and type
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          utils: ['react-router-dom'],
+        // More aggressive code splitting based on modules
+        manualChunks: (id) => {
+          // Create a chunk for core React libraries
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-core';
+          }
+          
+          // Create a chunk for specific large libraries
+          if (id.includes('node_modules/@tanstack/react-query')) {
+            return 'tanstack-query';
+          }
+          
+          // Create a chunk for Radix UI components
+          if (id.includes('node_modules/@radix-ui/')) {
+            return 'radix-ui';
+          }
+          
+          // Create a chunk for Lucide icons
+          if (id.includes('node_modules/lucide-react')) {
+            return 'icons';
+          }
+          
+          // Create a chunk for utility libraries
+          if (id.includes('node_modules/lodash') || 
+              id.includes('node_modules/date-fns') ||
+              id.includes('node_modules/ramda')) {
+            return 'utils';
+          }
+          
+          // Group all other node_modules
+          if (id.includes('node_modules/')) {
+            return 'vendor';
+          }
         },
-        // Ensure chunk size isn't too large
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        // Improve chunk naming to enable better caching
+        chunkFileNames: 'assets/[name]-[hash:8].js',
+        entryFileNames: 'assets/[name]-[hash:8].js',
+        assetFileNames: 'assets/[name]-[hash:8].[ext]',
+      },
+      // Optimize tree-shaking
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false
       },
     },
-    sourcemap: false, // Disable sourcemaps in production
+    // Disable sourcemaps in production to reduce bundle size
+    sourcemap: process.env.NODE_ENV !== 'production',
     // Enable modern JavaScript features
     target: 'es2020',
+    // Use modulepreload instead of old approaches
+    modulePreload: {
+      polyfill: true,
+    },
+    // Improve CSS handling
+    cssTarget: 'chrome80',
   },
   optimizeDeps: {
     // Force include specific dependencies for better optimization
-    include: ['react', 'react-dom', 'react-router-dom'],
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom',
+      '@tanstack/react-query'
+    ],
+    // Disable processing of these dependencies if they're causing issues
+    exclude: [],
+    // Improve tree-shaking
+    esbuildOptions: {
+      // Mark packages as side-effect free for better tree shaking
+      pure: ['console.log', 'console.debug', 'console.info']
+    }
   },
+  // Enable some experimental features
+  experimental: {
+    // Enables renderBuiltUrl to generate absolute URLs for assets
+    renderBuiltUrl(filename, { hostType }) {
+      if (hostType === 'js') {
+        return { runtime: `window.__assetsBaseUrl + ${JSON.stringify(filename)}` };
+      }
+    }
+  }
 });

@@ -1,3 +1,17 @@
+# robots.txt for myStylus
+
+# Allow all web crawlers
 User-agent: *
 Allow: /
-Sitemap: https://mystylus.ai/sitemap.xml 
+
+# Sitemap location
+Sitemap: https://mystylus.com/sitemap.xml
+
+# Disallow specific paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/private/
+
+# Crawl delay for specific bots
+User-agent: Baiduspider
+Crawl-delay: 10 

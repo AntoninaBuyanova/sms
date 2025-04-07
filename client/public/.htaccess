@@ -1,0 +1,88 @@
+# Включение HTTPS
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Редирект с www на без www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Добавляем заголовки безопасности
+<IfModule mod_headers.c>
+    # Enable HTTP Strict Transport Security (HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Disable content-type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Protect against clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Restrict referrer information
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Настройки Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com; object-src 'none'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; manifest-src 'self'"
+</IfModule>
+
+# Настройки кэширования
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    
+    # Изображения
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Веб-шрифты
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# Включение сжатия
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml
+    <FilesMatch "\.(js|css|html|xml|json|svg)$">
+        SetOutputFilter DEFLATE
+    </FilesMatch>
+</IfModule>
+
+# Перенаправление 404 ошибок на главную страницу
+ErrorDocument 404 /index.html
+
+# Защита от хотлинков
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?mystylus.com [NC]
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?google.com [NC]
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?bing.com [NC]
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yandex.ru [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [NC,F,L]
+</IfModule>
+
+# Блокировка доступа к системным файлам
+<FilesMatch "^\.(?:ht|git|env|github|docker|DS_Store)">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Скрываем информацию о сервере
+ServerSignature Off 
