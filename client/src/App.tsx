@@ -11,6 +11,7 @@ const Home = lazy(() => import("./pages/Home"));
 const PortuguesePage = lazy(() => import("./pages/pt"));
 const BrazilianPortuguesePage = lazy(() => import("./pages/pt-br"));
 const SpanishPage = lazy(() => import("./pages/es"));
+const MexicanSpanishPage = lazy(() => import("./pages/es-mx"));
 
 // Preload components when idle or on hover
 const preloadHome = () => import("./pages/Home");
@@ -18,6 +19,7 @@ const preloadNotFound = () => import("./pages/not-found");
 const preloadPortuguese = () => import("./pages/pt");
 const preloadBrazilianPortuguese = () => import("./pages/pt-br");
 const preloadSpanish = () => import("./pages/es");
+const preloadMexicanSpanish = () => import("./pages/es-mx");
 
 // Preload critical components
 if (typeof window !== 'undefined') {
@@ -57,6 +59,10 @@ function Router() {
         <Route 
           path="/es" 
           component={SpanishPage} 
+        />
+        <Route 
+          path="/es-mx" 
+          component={MexicanSpanishPage} 
         />
         {/* Fallback to 404 */}
         <Route component={NotFound} />
