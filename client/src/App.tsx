@@ -8,10 +8,14 @@ import LoadingFallback from "./components/LoadingFallback";
 const Toaster = lazy(() => import("./components/ui/toaster").then(module => ({ default: module.Toaster })));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Home = lazy(() => import("./pages/Home"));
+const PortuguesePage = lazy(() => import("./pages/pt"));
+const BrazilianPortuguesePage = lazy(() => import("./pages/pt-br"));
 
 // Preload components when idle or on hover
 const preloadHome = () => import("./pages/Home");
 const preloadNotFound = () => import("./pages/not-found");
+const preloadPortuguese = () => import("./pages/pt");
+const preloadBrazilianPortuguese = () => import("./pages/pt-br");
 
 // Preload critical components
 if (typeof window !== 'undefined') {
@@ -39,6 +43,14 @@ function Router() {
         <Route 
           path="/" 
           component={Home} 
+        />
+        <Route 
+          path="/pt" 
+          component={PortuguesePage} 
+        />
+        <Route 
+          path="/pt-br" 
+          component={BrazilianPortuguesePage} 
         />
         {/* Fallback to 404 */}
         <Route component={NotFound} />
