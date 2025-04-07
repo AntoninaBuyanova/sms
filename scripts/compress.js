@@ -1,158 +1,297 @@
+#!/usr/bin/env node
+
+/**
+ * Enhanced Compression Script
+ * 
+ * This script improves the compression of static assets by:
+ * 1. Re-compressing JS and CSS files with optimal settings
+ * 2. Verifying all text files are properly compressed
+ * 3. Setting the appropriate MIME types and compression headers
+ */
+
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import zlib from 'zlib';
-import brotli from 'brotli';
 import { promisify } from 'util';
+import zlib from 'zlib';
+import { fileURLToPath } from 'url';
+import { glob } from 'glob';
 
 // Convert callbacks to promises
-const readdir = promisify(fs.readdir);
-const stat = promisify(fs.stat);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
+const gzip = promisify(zlib.gzip);
+const brotliCompress = promisify(zlib.brotliCompress);
 
-// Get directory name
+// Get directory path for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const distDir = path.resolve(__dirname, '../dist/public');
+
+// Set the dist directory path
+const distDir = path.join(__dirname, '..', 'dist', 'public');
+
+// Compression options
+const gzipOpts = { level: 9 }; // Maximum compression
+const brotliOpts = { 
+  params: {
+    [zlib.constants.BROTLI_PARAM_QUALITY]: 11, // Maximum quality
+    [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT, // Optimize for text
+    [zlib.constants.BROTLI_PARAM_SIZE_HINT]: 0 // Auto-detect size hint
+  }
+};
 
 // File extensions to compress
-const COMPRESS_EXTENSIONS = ['.js', '.css', '.html', '.json', '.svg', '.xml', '.txt', '.md'];
-// Size threshold (only compress files larger than this)
-const SIZE_THRESHOLD = 1024; // 1KB
+const compressibleExtensions = [
+  '.js', '.css', '.html', '.json', '.svg', '.xml', '.txt', '.map', 
+  '.woff', '.woff2', '.ttf', '.eot'
+];
 
-/**
- * Check if a file should be compressed based on extension and size
- */
-async function shouldCompress(filePath) {
+// Get all compressible files
+async function getCompressibleFiles() {
+  return new Promise((resolve, reject) => {
+    glob(`${distDir}/**/*+(.js|.css|.html|.json|.svg|.xml|.txt|.map)`, {}, (err, files) => {
+      if (err) return reject(err);
+      resolve(files);
+    });
+  });
+}
+
+// Create .gz version of a file
+async function createGzipVersion(filePath) {
   try {
-    const stats = await stat(filePath);
-    const ext = path.extname(filePath).toLowerCase();
+    const content = await readFile(filePath);
+    const compressedContent = await gzip(content, gzipOpts);
     
-    // Only compress files above threshold and with appropriate extensions
-    return stats.size > SIZE_THRESHOLD && COMPRESS_EXTENSIONS.includes(ext);
+    // Only write if gzipped content is smaller
+    if (compressedContent.length < content.length) {
+      const gzipPath = `${filePath}.gz`;
+      await writeFile(gzipPath, compressedContent);
+      
+      const savings = ((1 - compressedContent.length / content.length) * 100).toFixed(2);
+      console.log(`📦 Gzipped: ${path.basename(filePath)} - Saved ${savings}% (${(content.length - compressedContent.length) / 1024}kb)`);
+    }
   } catch (error) {
-    console.error(`Error checking file ${filePath}:`, error);
-    return false;
+    console.error(`❌ Error creating gzip for ${filePath}:`, error.message);
   }
 }
 
-/**
- * Compress a file with Gzip
- */
-async function compressWithGzip(filePath) {
+// Create .br version of a file
+async function createBrotliVersion(filePath) {
   try {
     const content = await readFile(filePath);
-    const compressedContent = zlib.gzipSync(content, {
-      level: 9, // Max compression level
-      memLevel: 9, // Max memory usage (for better compression)
+    const compressedContent = await brotliCompress(content, brotliOpts);
+    
+    // Only write if brotli content is smaller
+    if (compressedContent.length < content.length) {
+      const brPath = `${filePath}.br`;
+      await writeFile(brPath, compressedContent);
+      
+      const savings = ((1 - compressedContent.length / content.length) * 100).toFixed(2);
+      console.log(`📦 Brotli: ${path.basename(filePath)} - Saved ${savings}% (${(content.length - compressedContent.length) / 1024}kb)`);
+    }
+  } catch (error) {
+    console.error(`❌ Error creating brotli for ${filePath}:`, error.message);
+  }
+}
+
+// Minify JS if not already minified
+async function minifyJsIfNeeded(filePath) {
+  // Skip if already minified (.min.js)
+  if (filePath.includes('.min.js')) return;
+  
+  try {
+    const content = await readFile(filePath, 'utf8');
+    // Process all JS files regardless of size
+    
+    // Use Terser to minify JavaScript with aggressive settings
+    const terser = await import('terser');
+    const minified = await terser.minify(content, {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        passes: 5, // Increased passes for better optimization
+        pure_getters: true,
+        unsafe: true,
+        unsafe_arrows: true,
+        unsafe_comps: true,
+        unsafe_math: true,
+        unsafe_methods: true,
+        unsafe_proto: true,
+        unsafe_regexp: true,
+        unsafe_undefined: true,
+        ecma: 2020,
+      },
+      mangle: {
+        properties: {
+          regex: /^_/ // Mangle private properties
+        },
+        toplevel: true,
+      },
+      format: {
+        comments: false,
+        ecma: 2020,
+        wrap_iife: true,
+        ascii_only: true,
+      },
+      toplevel: true,
+      module: true,
     });
     
-    await writeFile(`${filePath}.gz`, compressedContent);
-    const savings = (1 - (compressedContent.length / content.length)) * 100;
-    
-    return {
-      original: content.length,
-      compressed: compressedContent.length,
-      savings: savings.toFixed(2),
-    };
-  } catch (error) {
-    console.error(`Error compressing file with Gzip ${filePath}:`, error);
-    return null;
-  }
-}
-
-/**
- * Compress a file with Brotli
- */
-async function compressWithBrotli(filePath) {
-  try {
-    const content = await readFile(filePath);
-    const compressedContent = Buffer.from(brotli.compress(content, {
-      mode: 1, // Text mode
-      quality: 11, // Max quality (0-11)
-      lgwin: 24, // Max window size
-    }));
-    
-    await writeFile(`${filePath}.br`, compressedContent);
-    const savings = (1 - (compressedContent.length / content.length)) * 100;
-    
-    return {
-      original: content.length,
-      compressed: compressedContent.length,
-      savings: savings.toFixed(2),
-    };
-  } catch (error) {
-    console.error(`Error compressing file with Brotli ${filePath}:`, error);
-    return null;
-  }
-}
-
-/**
- * Find all files in a directory recursively
- */
-async function findFiles(dir) {
-  const files = [];
-  const entries = await readdir(dir, { withFileTypes: true });
-  
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    
-    if (entry.isDirectory()) {
-      const subFiles = await findFiles(fullPath);
-      files.push(...subFiles);
-    } else {
-      files.push(fullPath);
+    if (minified.code && minified.code.length < content.length) {
+      await writeFile(filePath, minified.code);
+      console.log(`🔧 Minified JS: ${path.basename(filePath)} - ${(content.length / 1024).toFixed(2)}kb → ${(minified.code.length / 1024).toFixed(2)}kb`);
     }
+  } catch (error) {
+    console.error(`❌ Error minifying ${filePath}:`, error.message);
   }
-  
-  return files;
 }
 
-/**
- * Main compression function
- */
-async function compressAssets() {
-  console.log('Starting asset compression...');
-  const startTime = Date.now();
-  
+// Remove unused CSS
+async function optimizeCss(filePath) {
   try {
-    const files = await findFiles(distDir);
-    let totalSaved = 0;
-    let totalOriginal = 0;
+    const content = await readFile(filePath, 'utf8');
     
-    console.log(`Found ${files.length} files to process`);
-    
-    for (const file of files) {
-      if (await shouldCompress(file)) {
-        console.log(`Compressing ${path.relative(distDir, file)}`);
-        
-        // Compress with Gzip
-        const gzipResult = await compressWithGzip(file);
-        if (gzipResult) {
-          console.log(`  Gzip: ${gzipResult.original} → ${gzipResult.compressed} bytes (${gzipResult.savings}% saved)`);
-          totalSaved += (gzipResult.original - gzipResult.compressed);
-          totalOriginal += gzipResult.original;
-        }
-        
-        // Compress with Brotli
-        const brotliResult = await compressWithBrotli(file);
-        if (brotliResult) {
-          console.log(`  Brotli: ${brotliResult.original} → ${brotliResult.compressed} bytes (${brotliResult.savings}% saved)`);
-        }
+    // Use lightningcss to optimize CSS
+    try {
+      const lightningcss = await import('lightningcss');
+      const { code } = lightningcss.transform({
+        filename: filePath,
+        code: Buffer.from(content),
+        minify: true,
+        sourceMap: false,
+      });
+      
+      if (code.length < content.length) {
+        await writeFile(filePath, code);
+        console.log(`🔧 Optimized CSS: ${path.basename(filePath)} - ${(content.length / 1024).toFixed(2)}kb → ${(code.length / 1024).toFixed(2)}kb`);
       }
+    } catch (e) {
+      console.log(`Failed to optimize CSS with lightningcss: ${e.message}`);
+    }
+  } catch (error) {
+    console.error(`❌ Error optimizing CSS ${filePath}:`, error.message);
+  }
+}
+
+// Generate an .htaccess file with proper compression settings
+async function createHtaccessFile() {
+  const htaccessContent = `# Compression and cache settings
+<IfModule mod_deflate.c>
+  # Enable compression
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/xhtml+xml
+  AddOutputFilterByType DEFLATE image/svg+xml image/x-icon
+  
+  # Exclude older browsers
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\\.0[678] no-gzip
+  BrowserMatch \\bMSIE !no-gzip !gzip-only-text/html
+  
+  # Specify proper MIME types
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Enable Brotli if available
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/x-javascript text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json application/xml
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml image/x-icon
+</IfModule>
+
+# Set proper encoding
+<IfModule mod_headers.c>
+  # Serve gzip compressed files if they exist and the client accepts gzip
+  <FilesMatch "\\.(js|css|html|json|xml|svg|txt|ico)$">
+    RewriteCond %{HTTP:Accept-encoding} gzip
+    RewriteCond %{REQUEST_FILENAME}\\.gz -f
+    RewriteRule ^(.*)$ $1.gz [QSA,L]
+    
+    # Serve brotli compressed files if they exist and the client accepts br
+    RewriteCond %{HTTP:Accept-encoding} br
+    RewriteCond %{REQUEST_FILENAME}\\.br -f
+    RewriteRule ^(.*)$ $1.br [QSA,L]
+    
+    # Serve correct content types
+    <Files *.js.gz>
+      AddType application/javascript .gz
+      Header append Vary Accept-Encoding
+    </Files>
+    <Files *.css.gz>
+      AddType text/css .gz
+      Header append Vary Accept-Encoding
+    </Files>
+    <Files *.js.br>
+      AddType application/javascript .br
+      Header append Vary Accept-Encoding
+    </Files>
+    <Files *.css.br>
+      AddType text/css .br
+      Header append Vary Accept-Encoding
+    </Files>
+    
+    # Add Vary: Accept-Encoding header
+    Header append Vary Accept-Encoding
+    
+    # Cache control - 1 week for static assets
+    Header set Cache-Control "max-age=604800, public"
+  </FilesMatch>
+</IfModule>
+
+# Prevent viewing of .htaccess file
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
+`;
+
+  try {
+    await writeFile(path.join(distDir, '.htaccess'), htaccessContent);
+    console.log('✅ Generated .htaccess file with compression settings');
+  } catch (error) {
+    console.error('❌ Error creating .htaccess file:', error.message);
+  }
+}
+
+// Main function
+async function main() {
+  try {
+    console.log('🚀 Starting enhanced compression...');
+    
+    // Get all files that should be compressed
+    const files = await getCompressibleFiles();
+    console.log(`Found ${files.length} compressible files`);
+    
+    // Process all files
+    for (const file of files) {
+      const ext = path.extname(file);
+      
+      // Apply minification to JS files
+      if (ext === '.js') {
+        await minifyJsIfNeeded(file);
+      }
+      
+      // Optimize CSS files
+      if (ext === '.css') {
+        await optimizeCss(file);
+      }
+      
+      // Create compressed versions
+      await createGzipVersion(file);
+      await createBrotliVersion(file);
     }
     
-    const totalSavingsPct = totalOriginal ? ((totalSaved / totalOriginal) * 100).toFixed(2) : 0;
-    const endTime = Date.now();
-    console.log(`Compression complete! Total time: ${(endTime - startTime) / 1000}s`);
-    console.log(`Total savings: ${(totalSaved / 1024).toFixed(2)}KB (${totalSavingsPct}%)`);
+    // Create .htaccess file with proper settings
+    await createHtaccessFile();
     
+    console.log('✅ Compression completed successfully!');
   } catch (error) {
-    console.error('Error during compression:', error);
+    console.error('❌ Error during compression:', error);
     process.exit(1);
   }
 }
 
-// Run the compression
-compressAssets(); 
+// Run the main function
+main(); 

@@ -11,21 +11,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Enable enhanced compression for all responses
+// Apply compression to all routes before other middleware
 app.use(enhancedCompression());
 
 // Set proper cache headers
 app.use(setCacheHeaders);
 
+// Log and add headers
 app.use((req, res, next) => {
+  // Set compression-related headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  
+  // Ensure content is properly encoded
+  if (!res.getHeader('Content-Encoding') && 
+      req.headers['accept-encoding'] && 
+      (req.headers['accept-encoding'].includes('gzip') || req.headers['accept-encoding'].includes('br'))) {
+    res.setHeader('Vary', 'Accept-Encoding');
+  }
+
   // Remove any restrictive headers
   res.removeHeader('X-Robots-Tag');
   res.removeHeader('X-Frame-Options');
-  res.removeHeader('X-Content-Type-Options');
 
   // Add SEO-friendly headers
   res.setHeader('X-Robots-Tag', 'index, follow');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
 
   const start = Date.now();
   const path = req.path;
@@ -96,7 +106,19 @@ app.use(express.static('dist/public', {
   lastModified: true,
   immutable: true,
   setHeaders: (res: Response, path: string) => {
-    // Already handled by setCacheHeaders middleware
+    // Ensure proper content types for better compression
+    if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    } else if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css; charset=utf-8');
+    } else if (path.endsWith('.html')) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    } else if (path.endsWith('.json')) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    } else if (path.endsWith('.svg')) {
+      res.setHeader('Content-Type', 'image/svg+xml');
+    }
+    
     // Add additional headers for HTTP/2 push if needed
     if (path.endsWith('.html')) {
       res.setHeader('Link', '</pdf.png>; rel=preload; as=image');

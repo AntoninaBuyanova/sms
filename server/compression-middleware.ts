@@ -16,8 +16,8 @@ export const enhancedCompression = () => {
   return compression({
     // Use highest level of compression for Gzip
     level: 9,
-    // Set higher threshold for small responses
-    threshold: 500, // Only compress responses larger than 500 bytes
+    // Lower threshold to compress more responses
+    threshold: 100, // Compress responses larger than 100 bytes
     // Implement brotli compression when available
     filter: (req: Request, res: Response) => {
       // Don't compress if client explicitly opted out
@@ -31,7 +31,13 @@ export const enhancedCompression = () => {
         return false;
       }
       
-      // Use standard compression filter
+      // Force compression for JS, CSS, HTML, JSON and text files
+      const path = req.path || '';
+      if (path.match(/\.(js|css|html|json|svg|txt|xml)$/i)) {
+        return true;
+      }
+      
+      // Use standard compression filter for other files
       return compression.filter(req, res);
     },
     // Set brotli options when available
@@ -39,7 +45,8 @@ export const enhancedCompression = () => {
       brotli: { 
         params: {
           [zlib.constants.BROTLI_PARAM_QUALITY]: 11, // Maximum quality
-          [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT
+          [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+          [zlib.constants.BROTLI_PARAM_SIZE_HINT]: 0 // Auto-detect size hint
         }
       }
     }
@@ -53,8 +60,24 @@ export const setCacheHeaders = (req: Request, res: Response, next: NextFunction)
   // Set Vary header for proper content negotiation
   res.setHeader('Vary', 'Accept-Encoding');
   
-  // Check if this is a static resource
+  // Ensure content type is set properly for compression to work correctly
   const path = req.path;
+  
+  if (path.match(/\.js$/i)) {
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  } else if (path.match(/\.css$/i)) {
+    res.setHeader('Content-Type', 'text/css; charset=utf-8');
+  } else if (path.match(/\.json$/i)) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  } else if (path.match(/\.html$/i)) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  } else if (path.match(/\.txt$/i)) {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  } else if (path.match(/\.xml$/i)) {
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  } else if (path.match(/\.svg$/i)) {
+    res.setHeader('Content-Type', 'image/svg+xml');
+  }
   
   if (path.match(/\.(js|css|svg|woff2?|ttf|eot)$/i)) {
     // Long cache for static assets with version hashes
