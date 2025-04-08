@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and tagline */}
         <div className="mb-16">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start">
             <img 
               src="Banner (2).png" 
               alt="Reimagine the Word - Intelligent Platform for Writing and Research" 
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
             />
             
             {/* Language Selector */}
-            <div className="relative self-center sm:self-auto" ref={dropdownRef}>
+            <div className="relative self-start text-left" ref={dropdownRef}>
               <div 
                 className="w-[90px] bg-white py-2 px-2 flex items-center justify-between cursor-pointer"
                 style={{ borderRadius: '8px' }}
