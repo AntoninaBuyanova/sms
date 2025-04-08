@@ -5,10 +5,10 @@ import { useLocation } from 'wouter';
 // Language options for the selector
 const languageOptions = [
   { code: 'en', name: 'English', flag: '/icons/us-flag.svg' },
-  { code: 'es', name: 'Español', flag: '/icons/es-flag.svg' },
-  { code: 'es-mx', name: 'Español (México)', flag: '/icons/mx-flag.svg' },
-  { code: 'pt', name: 'Português', flag: '/icons/pt-flag.svg' },
-  { code: 'pt-br', name: 'Português (Brasil)', flag: '/icons/br-flag.svg' },
+  { code: 'es', name: 'Spanish', flag: '/icons/es-flag.svg' },
+  { code: 'es-mx', name: 'Spanish (Mexico)', flag: '/icons/mx-flag.svg', displayCode: 'ES' },
+  { code: 'pt', name: 'Portuguese', flag: '/icons/pt-flag.svg' },
+  { code: 'pt-br', name: 'Portuguese (Brazil)', flag: '/icons/br-flag.svg', displayCode: 'PT' },
 ];
 
 const Footer: React.FC = () => {
@@ -48,15 +48,15 @@ const Footer: React.FC = () => {
     <footer className="py-20 bg-[#F8F8F3] font-aeonik">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and tagline */}
-        <div className="mb-16 flex justify-between items-start">
+        <div className="mb-16 flex flex-col items-center sm:items-start">
           <img 
             src="Banner (2).png" 
             alt="Reimagine the Word - Intelligent Platform for Writing and Research" 
-            className="h-auto max-w-[550px] w-full"
+            className="h-auto max-w-[550px] w-full mb-6 sm:mb-0"
           />
           
           {/* Language Selector */}
-          <div className="relative mt-1 self-start sm:self-start w-auto flex justify-start sm:justify-end" ref={dropdownRef}>
+          <div className="relative mt-1 self-center sm:self-end sm:absolute sm:right-8" ref={dropdownRef}>
             <div 
               className="w-[90px] bg-white py-2 px-2 flex items-center justify-between cursor-pointer"
               style={{ borderRadius: '8px' }}
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                   className="w-6 h-6 rounded-full mr-2" 
                 />
                 <span className="font-medium">
-                  {currentLang.code.toUpperCase()}
+                  {currentLang.displayCode || currentLang.code.toUpperCase()}
                 </span>
               </div>
               <svg 

@@ -48,15 +48,15 @@ const Footer: React.FC = () => {
     <footer className="py-20 bg-[#F8F8F3] font-aeonik">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and tagline */}
-        <div className="mb-16 flex justify-between items-start">
+        <div className="mb-16 flex flex-col items-center sm:items-start">
           <img 
             src="Banner (2).png" 
             alt="Reimagine a Palavra - Plataforma Inteligente para Escrita e Pesquisa" 
-            className="h-auto max-w-[550px] w-full"
+            className="h-auto max-w-[550px] w-full mb-6 sm:mb-0"
           />
           
           {/* Language Selector */}
-          <div className="relative mt-1 self-start sm:self-start w-auto flex justify-start sm:justify-end" ref={dropdownRef}>
+          <div className="relative mt-1 self-center sm:self-end sm:absolute sm:right-8" ref={dropdownRef}>
             <div 
               className="w-[90px] bg-white py-2 px-2 flex items-center justify-between cursor-pointer"
               style={{ borderRadius: '8px' }}
