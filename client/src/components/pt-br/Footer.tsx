@@ -6,9 +6,9 @@ import { useLocation } from 'wouter';
 const languageOptions = [
   { code: 'en', name: 'Inglês', flag: '/icons/us-flag.svg' },
   { code: 'es', name: 'Espanhol', flag: '/icons/es-flag.svg' },
-  { code: 'es-mx', name: 'Espanhol (México)', flag: '/icons/mx-flag.svg' },
+  { code: 'es-mx', name: 'Espanhol (México)', flag: '/icons/mx-flag.svg', displayCode: 'ES' },
   { code: 'pt', name: 'Português', flag: '/icons/pt-flag.svg' },
-  { code: 'pt-br', name: 'Português (Brasil)', flag: '/icons/br-flag.svg' },
+  { code: 'pt-br', name: 'Português (Brasil)', flag: '/icons/br-flag.svg', displayCode: 'PT' },
 ];
 
 const Footer: React.FC = () => {
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                   className="w-6 h-6 rounded-full mr-2" 
                 />
                 <span className="font-medium">
-                  {currentLang.code.toUpperCase()}
+                  {currentLang.displayCode || currentLang.code.toUpperCase()}
                 </span>
               </div>
               <svg 
